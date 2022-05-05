@@ -1,0 +1,16 @@
+No text is given by the user, 5 languages are selected to verify translator - Standard Chinese, English, Hindi, Espagnol, Arabe
+[{'isTranslationSupported': True, 'isTransliterationSupported': True, 'language': 'zh-Hans', 'score': 1.0}]
+Success: The spoken language is selected correctly
+The user is speaking Standard Chinese language!
+[{'isTranslationSupported': True, 'isTransliterationSupported': False, 'language': 'en', 'score': 1.0}]
+Success: The spoken language is selected correctly
+The user is speaking English language!
+[{'isTranslationSupported': True, 'isTransliterationSupported': True, 'language': 'hi', 'score': 1.0}]
+Success: The spoken language is selected correctly
+The user is speaking Hindi language!
+[{'isTranslationSupported': True, 'isTransliterationSupported': False, 'language': 'es', 'score': 0.93}]
+Success: The spoken language is selected correctly
+The user is speaking Spanish language!
+[{'isTranslationSupported': True, 'isTransliterationSupported': True, 'language': 'ar', 'score': 1.0}]
+Success: The spoken language is selected correctly
+The user is speaking Arabic language!

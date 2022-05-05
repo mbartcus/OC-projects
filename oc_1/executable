@@ -1,0 +1,32 @@
+#!/bin/bash
+
+dir_train_text='data/Dataset_project_1_AI_Engineer/x_train.txt'
+dir_train_lang='data/Dataset_project_1_AI_Engineer/y_train.txt'
+dir_labels_lang='data/Dataset_project_1_AI_Engineer/labels.csv'
+
+txt_en="Shaykh Gibril Haddad is regarded as an accomplished and influential Islamic scholar, hadith expert (muhaddith), religious leader, author, and translator of classical Islamic texts. He holds ijazas from over 150 scholars across the Muslim world and has translated and published over 30 works. In 2009, he was listed amongst the 500 Most Influential Muslims In The World. He has been a teacher on the traditional online Qibla Islamic institute (formerly SunniPath) and is a contributor to the website eshaykh.com, which offers guidance and traditional teachings on various aspects of Islam. He is an editor of the Integrated Encyclopedia of the Quran (IEQ) and is also a visiting fellow at the Sultan Omar Ali Saifuddin Center for Islamic Studies, University Brunei Darussalam."
+
+txt_fr="La revue mensuelle Maître Guillaume a été fondée en février 1954 par Urbain Leblanc. Il s'agissait d'une publication résolument acadienne qui coexistait avec d'autres journaux du sud-est du nouveau-Brunswick : Le réveil, Le Fermier acadien et surtout L'Évangéline et Le Moniteur acadien."
+
+txt_es="Pablo Gonzálvez es unu los mayoris conoceoris el estremeñu, aportandu no comu obra filológica namás, sino tamien comu obra literária la Primera Gramática Ehtremeña en 1995. Esta obra pretendi albarcal la idioma duna horma global, çalachandu el sistema lingüísticu el estremeñu enos sus diversus andaris fonéticu, morfológicu i sintáticu. Comu hechu señalabri, destaca la su propuesta ortográfica fonetista ondi letras cumu la x o la j no feguran endrentu el alfabetu estremeñu i gasta pa represental tolos tipus d’aspiracionis la letra h. Se trata de la primel propuesta de normativizal el estremeñu escritu, enque son muchas las deficultais que deja ascapi. Amás la Gramática de Gonzálvez peca d’enfocal una gramática en conparáncia sempri con el castellanu, descudiandu al lionés i al portugués comu luengas mas cercanas a las raizis el sustratu el estremeñu."
+
+txt_ge="Ab 1995, mit dem Erscheinen von Microsoft Windows 95 und dem ständigen Zuwachs an Benutzern, wurden auch Viren für dieses Betriebssystem (und dessen obligate Programme wie Microsoft Office) geschrieben. 1995 erschien das erste Makrovirus für Microsoft Word. Da Dokumente öfter als Programme getauscht wurden, wurden Makroviren ein sehr großes Problem für die Anwender. In den Jahren darauf erschienen die ersten Makroviren für Excel (1997), Powerpoint und Access (beide 1998) und Visio (2000). 1996 wurde das erste Virus Constructor Kit für Makroviren geschrieben, das es auch Personen ohne Programmierkenntnissen ermöglichte, Viren zu erstellen."
+
+txt_jp="エノが行きがかりでバスに乗ってしまい、気分が悪くなった際に助けるが、今すぐバスを降りたいと運転手に頼む際、本当のことを言ってしまうと彼女が恥ずかしい思いをすると察して「僕ウンコしたいんです!!」と言ってバスを降りた。エノは内心「私もしたいみたいじゃないの」と思うも、別れ際にエノの髪を「ふわふわのお菓子みたい」と言い、この台詞に憧れていたエノに強い衝撃を与えた。この話を聞いたリコは、以後彼のことを『ウンコ王子』または『ウンコ』というあだ名で呼ぶようになったが、エノは普通に「戸田くん」と呼んでいる。"
+
+txt='Ce morning I was jogging'
+
+python pydetectlang.py --txt "$txt" --labdir $dir_labels_lang
+
+#python pydetectlang.py --dir_txt $dir_train_text --dir_lang $dir_train_lang --labdir $dir_labels_lang
+
+# execution du code
+#python pydetectlang.py --txt "$txt_fr" --labdir $dir_labels_lang
+
+#python pydetectlang.py --txt "$txt_fr" --labdir $dir_labels_lang
+
+#python pydetectlang.py --txt "$txt_jp" --labdir $dir_labels_lang
+
+#python pydetectlang.py --txt "$txt_es" --labdir $dir_labels_lang
+
+#python pydetectlang.py --txt "$txt_ge" --labdir $dir_labels_lang

@@ -1,0 +1,5 @@
+conda install jupyter
+conda install pandas
+conda install matplotlib
+conda install seaborn
+conda install folium -c conda-forge

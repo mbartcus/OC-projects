@@ -1,0 +1,4 @@
+pip install python-dotenv
+python -m pip install python-dotenv
+conda install requests
+conda install pandas
