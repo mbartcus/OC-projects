@@ -1,0 +1,4 @@
+conda install jupyter
+conda install pandas
+conda install matplotlib
+conda install seaborn
