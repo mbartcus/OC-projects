@@ -3,5 +3,9 @@ conda install pandas
 conda install matplotlib
 conda install seaborn
 conda install -c conda-forge wordcloud
-pip install voila
-conda install -c conda-forge ipywidgets ipyvolume bqplot scipy
+pip install -U scikit-learn
+
+pip install hvplot
+pip install panel
+
+
