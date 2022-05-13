@@ -5,19 +5,7 @@ import pandas as pd
 from utils import *
 
 
-st.markdown(
-    """
-    <style>
-    .reportview-container {
-        background: url("url_goes_here")
-    }
-   .sidebar .sidebar-content {
-        background: url("url_goes_here")
-    }
-    </style>
-    """,
-    unsafe_allow_html=True
-)
+
 
 
 # header of web application
@@ -34,24 +22,33 @@ options_categories_food = st.sidebar.multiselect(
      df.my_categoty.unique().tolist(),
      ['sweet', 'melange'])
 
-st.write('You selected:', options_categories_food)
-
 
 
 
 
 option_var_100g = st.sidebar.selectbox(
      'Choose the nutrition you prefer',
-     (get_cols_100g(df)))
+     (get_cols_100g(df)),
+     key = 'var1_100g')
 
-st.write('You selected:', option_var_100g)
-
+option_var2_100g = st.sidebar.selectbox(
+     'Choose the nutrition you prefer',
+     (get_cols_100g(df)),
+     key = 'var2_100g')
 
 
 df_categories =  get_pandas_catVar_numVar(df, catVar='my_categoty', numVar=option_var_100g)
 
-st.dataframe(df_categories.head())
 
 fig = plt.figure(figsize=(10, 4))
 sns.boxplot(x=option_var_100g, y="my_categoty", data=df[df['my_categoty'].isin(options_categories_food)], orient = 'h', showfliers = False);
+st.pyplot(fig)
+
+
+
+fig=plt.figure(figsize=(10,4));
+sns.scatterplot(data=df, x=option_var_100g, y=option_var2_100g)
+plt.title('Interaction of fat on energy', fontsize=20);
+plt.xlabel('Fat', fontsize=15);
+plt.ylabel('Energy', fontsize=15);
 st.pyplot(fig)
