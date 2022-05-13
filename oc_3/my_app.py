@@ -47,7 +47,7 @@ st.pyplot(fig)
 
 
 fig=plt.figure(figsize=(10,4));
-sns.scatterplot(data=df, x=option_var_100g, y=option_var2_100g)
+sns.scatterplot(data=df, x=option_var_100g, y=option_var2_100g, hue="nutrition_grade_fr")
 plt.title('Interaction of fat on energy', fontsize=20);
 plt.xlabel('Fat', fontsize=15);
 plt.ylabel('Energy', fontsize=15);
