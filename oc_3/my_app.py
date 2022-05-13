@@ -4,7 +4,7 @@ import numpy as np
 import pandas as pd
 from utils import *
 
-
+st.set_page_config(layout="wide")
 
 
 
@@ -46,15 +46,18 @@ df_selected = df[df['my_categoty'].isin(options_categories_food) & df.nutrition_
 df_categories =  get_pandas_catVar_numVar(df_selected, catVar='my_categoty', numVar=option_var_100g)
 
 
-fig = plt.figure(figsize=(10, 4))
-sns.boxplot(x=option_var_100g, y="my_categoty", data=df_selected, orient = 'h', showfliers = False);
-st.pyplot(fig)
+col1, col2 = st.columns(2)
 
+with col1:
+    fig = plt.figure(figsize=(10, 4))
+    sns.boxplot(x=option_var_100g, y="my_categoty", data=df_selected, orient = 'h', showfliers = False);
+    plt.title("Categories Food distribution over {0}".format(option_var_100g))
+    st.pyplot(fig)
 
-
-fig=plt.figure(figsize=(10,4));
-sns.scatterplot(data=df_selected, x=option_var_100g, y=option_var2_100g, hue="nutrition_grade_fr")
-plt.title('Interaction of {0} on {1}'.format(option_var_100g, option_var2_100g), fontsize=20);
-plt.xlabel('{0}'.format(option_var_100g), fontsize=15);
-plt.ylabel('{0}'.format(option_var2_100g), fontsize=15);
-st.pyplot(fig)
+with col2:
+    fig=plt.figure(figsize=(10,4));
+    sns.scatterplot(data=df_selected, x=option_var_100g, y=option_var2_100g, hue="nutrition_grade_fr")
+    plt.title('Interaction of {0} on {1}'.format(option_var_100g, option_var2_100g))
+    plt.xlabel('{0}'.format(option_var_100g), fontsize=15);
+    plt.ylabel('{0}'.format(option_var2_100g), fontsize=15);
+    st.pyplot(fig)
