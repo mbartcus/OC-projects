@@ -11,8 +11,18 @@ st.set_page_config(layout="wide")
 
 
 # header of web application
+
 st.title('Choose your food')
 st.header('Using the data collected from OpenFoodFacts')
+
+'''
+#### Each of us has it's own preferences of food. Someone are interested in meat/fish, other are looking for cheese, some are looking for some drinks.
+But the hole variety of theese foods with lots of nutrition facts makes difficult to make a good selection.
+ - Some desises can impose/limit to eat some foods (ex: sugar/salt limitter),
+ - We can have an active life so the need of energy foods is higher then if we have an sitting proffesion,
+In my data analyse project I propose to analyse the nutrition food facts, and porpose an application to help the user understand the food nutrition facts, and make a decision
+on the desired food.
+'''
 
 
 
@@ -44,10 +54,21 @@ with st.sidebar.container():
          key = 'var2_100g')
 
 
+
+
+
+
+
+df_selected = df[df['my_categoty'].isin(options_categories_food) & df.nutrition_grade_fr.isin(options_nutrition_grade) ]
+
+energy_max = int(np.round(df_selected['energy_100g'].max()))
+
+df_categories =  get_pandas_catVar_numVar(df_selected, catVar='my_categoty', numVar=option_var_100g)
+
 with st.sidebar.expander("See more ..."):
     energy_selected = st.slider(
          'Select energy',
-         0, 4000, 50)
+         0, energy_max, 50)
 
     sugar_selected = st.slider(
          'Select sugar',
@@ -58,27 +79,20 @@ with st.sidebar.expander("See more ..."):
          0.0, 100.0, (25.0, 75.0))
 
 
-
-
-df_selected = df[df['my_categoty'].isin(options_categories_food) & df.nutrition_grade_fr.isin(options_nutrition_grade) ]
-
-df_categories =  get_pandas_catVar_numVar(df_selected, catVar='my_categoty', numVar=option_var_100g)
-
-
 col1, col2= st.columns(2)
 
 with col1:
     fig = plt.figure(figsize=(10, 4))
     sns.boxplot(x=option_var_100g, y="my_categoty", data=df_selected, orient = 'h', showfliers = False);
     plt.title("Categories Food distribution over {0}".format(option_var_100g), fontsize=20)
-    plt.xlabel('{0}'.format('Food categories'), fontsize=15);
-    plt.ylabel('{0}'.format(option_var_100g), fontsize=15);
+    plt.xlabel('{0}'.format(option_var_100g), fontsize=15);
+    plt.ylabel('{0}'.format('Food categories'), fontsize=15);
     st.pyplot(fig)
 
 with col2:
     fig=plt.figure(figsize=(10,4));
     sns.scatterplot(data=df_selected, x=option_var_100g, y=option_var2_100g, hue="nutrition_grade_fr")
-    plt.title('Interaction of {0} on {1}'.format(option_var_100g, option_var2_100g), fontsize=20)
+    plt.title('{0} / {1} by nutrition grade'.format(option_var_100g, option_var2_100g), fontsize=20)
     plt.xlabel('{0}'.format(option_var_100g), fontsize=15);
     plt.ylabel('{0}'.format(option_var2_100g), fontsize=15);
     st.pyplot(fig)
@@ -87,7 +101,7 @@ col3, col4 = st.columns(2)
 with col3:
     fig=plt.figure(figsize=(10,4));
     sns.scatterplot(data=df_selected, x=option_var_100g, y=option_var2_100g, hue="my_categoty")
-    plt.title('Interaction of {0} on {1}'.format(option_var_100g, option_var2_100g), fontsize=20)
+    plt.title('{0} / {1} by category'.format(option_var_100g, option_var2_100g), fontsize=20)
     plt.xlabel('{0}'.format(option_var_100g), fontsize=15);
     plt.ylabel('{0}'.format(option_var2_100g), fontsize=15);
     st.pyplot(fig)
@@ -118,3 +132,6 @@ with col4:
     model = reg.fit(x, y);
     plt.plot(x, model.predict(x),color='k');
     st.pyplot(fig)
+
+
+# propose 3 foods for each category having energy sugar and salt selected
