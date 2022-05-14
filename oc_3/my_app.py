@@ -7,7 +7,6 @@ from utils import *
 st.set_page_config(layout="wide")
 
 
-
 # header of web application
 st.title('Choose your food')
 st.header('Using the data collected from OpenFoodFacts')
