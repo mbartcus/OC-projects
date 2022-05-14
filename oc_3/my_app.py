@@ -18,30 +18,47 @@ st.header('Using the data collected from OpenFoodFacts')
 
 df = pd.read_csv('/Users/marius/Documents/GitHub/OC-projects/oc_3/data/df_app.csv')
 
+with st.sidebar.container():
+    options_categories_food = st.multiselect(
+         'Choose foods categories you prefer',
+         df.my_categoty.unique().tolist(),
+         ['sweet', 'melange'],
+         key = 'categories_food')
 
-options_categories_food = st.sidebar.multiselect(
-     'Choose foods categories you prefer',
-     df.my_categoty.unique().tolist(),
-     ['sweet', 'melange'],
-     key = 'categories_food')
-
-options_nutrition_grade = st.sidebar.multiselect(
-     'Choose nutrition grade',
-     df.nutrition_grade_fr.unique().tolist(),
-     ['a', 'b'],
-     key = 'nutrition_grade')
+    options_nutrition_grade = st.multiselect(
+         'Choose nutrition grade',
+         df.nutrition_grade_fr.unique().tolist(),
+         ['a', 'b'],
+         key = 'nutrition_grade')
 
 
 
-option_var_100g = st.sidebar.selectbox(
-     'Choose the nutrition you prefer',
-     (get_cols_100g(df)),
-     key = 'var1_100g')
+    option_var_100g = st.selectbox(
+         'Choose the nutrition you prefer',
+         (get_cols_100g(df)),
+         key = 'var1_100g')
 
-option_var2_100g = st.sidebar.selectbox(
-     'Choose the nutrition you prefer',
-     (get_cols_100g(df)),
-     key = 'var2_100g')
+    option_var2_100g = st.selectbox(
+         'Choose the nutrition you prefer',
+         (get_cols_100g(df)),
+         key = 'var2_100g')
+
+
+with st.sidebar.expander("See more ..."):
+    energy_selected = st.slider(
+         'Select energy',
+         0, 4000, 50)
+
+    sugar_selected = st.slider(
+         'Select sugar',
+         0.0, 100.0, (25.0, 75.0))
+
+    salt_selected = st.slider(
+         'Select salt',
+         0.0, 100.0, (25.0, 75.0))
+
+
+
 
 df_selected = df[df['my_categoty'].isin(options_categories_food) & df.nutrition_grade_fr.isin(options_nutrition_grade) ]
 
