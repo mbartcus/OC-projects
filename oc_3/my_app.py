@@ -9,30 +9,13 @@ from sklearn.linear_model import LinearRegression
 
 st.set_page_config(layout="wide")
 
-
-# header of web application
-
-st.title('Choose your food')
-st.header('Using the data collected from OpenFoodFacts')
-
-'''
-#### Each of us has it's own preferences of food. Someone are interested in meat/fish, other are looking for cheese, some are looking for some drinks.
-But the hole variety of theese foods with lots of nutrition facts makes difficult to make a good selection.
- - Some desises can impose/limit to eat some foods (ex: sugar/salt limitter),
- - We can have an active life so the need of energy foods is higher then if we have an sitting proffesion,
-In my data analyse project I propose to analyse the nutrition food facts, and porpose an application to help the user understand the food nutrition facts, and make a decision
-on the desired food.
-'''
-
-
-
 df = pd.read_csv('/Users/marius/Documents/GitHub/OC-projects/oc_3/data/df_app.csv')
 
 with st.sidebar.container():
     options_categories_food = st.multiselect(
          'Choose foods categories you prefer',
          df.my_categoty.unique().tolist(),
-         ['sweet', 'melange'],
+         ['sweet', 'melange', 'fats', 'beverage'],
          key = 'categories_food')
 
     options_nutrition_grade = st.multiselect(
@@ -54,14 +37,28 @@ with st.sidebar.container():
          key = 'var2_100g')
 
 
-
-
-
-
-
 df_selected = df[df['my_categoty'].isin(options_categories_food) & df.nutrition_grade_fr.isin(options_nutrition_grade) ]
 
 energy_max = int(np.round(df_selected['energy_100g'].max()))
+
+
+# header of web application
+
+st.title('Choose your food')
+st.header('Using the data collected from OpenFoodFacts')
+
+
+'''
+#### Each of us has it's own preferences of food. Someone are interested in meat/fish, other are looking for cheese, some are looking for some drinks.
+But the hole variety of theese foods with lots of nutrition facts makes difficult to make a good selection.
+ - Some desises can impose/limit to eat some foods (ex: sugar/salt limitter),
+ - We can have an active life so the need of energy foods is higher then if we have an sitting proffesion,
+In my data analyse project I propose to analyse the nutrition food facts, and porpose an application to help the user understand the food nutrition facts, and make a decision
+on the desired food.
+'''
+
+fig_words = plot_words(df_selected, 'my_categoty')
+st.pyplot(fig_words)
 
 df_categories =  get_pandas_catVar_numVar(df_selected, catVar='my_categoty', numVar=option_var_100g)
 
@@ -135,3 +132,6 @@ with col4:
 
 
 # propose 3 foods for each category having energy sugar and salt selected
+
+with st.expander("Proposals"):
+    st.write("propose 3 foods for each category having energy sugar and salt selected")

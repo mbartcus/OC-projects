@@ -42,7 +42,7 @@ def get_pandas_catVar_numVar(df, catVar, numVar):
 
     return data
 
-def plot_words(df, col):
+def plot_words(df, col, height = 15, wieght = 10):
     #take not nan values
     df = df[~df[col].isna()]
 
@@ -63,9 +63,13 @@ def plot_words(df, col):
     # Create a WordCloud object
     wordcloud = WordCloud(background_color="white", max_words=5000, contour_width=3, contour_color='steelblue')# Generate a word cloud
     wordcloud.generate(long_string)# Visualize the word cloud
-    plt.figure( figsize=(15,10) )
+    fig = plt.figure( figsize=(height, wieght), frameon=False )
+    plt.tick_params(left = False, right = False , labelleft = False ,
+                labelbottom = False, bottom = False)
+    plt.box(False)
     plt.imshow(wordcloud)
-    plt.show()
+    return fig
+
 
 def compute_words_freq(df, var, sep=None):
     var_new = var + '_new'
