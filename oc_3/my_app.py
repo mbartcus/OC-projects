@@ -37,10 +37,44 @@ with st.sidebar.container():
          key = 'var2_100g')
 
 
-df_selected = df[df['my_categoty'].isin(options_categories_food) & df.nutrition_grade_fr.isin(options_nutrition_grade) ]
+
+
+df_selected = df[df['my_categoty'].isin(options_categories_food) &
+                df.nutrition_grade_fr.isin(options_nutrition_grade)]
+
+
 
 energy_max = int(np.round(df_selected['energy_100g'].max()))
+additives_max =  int(np.round(df_selected['additives_n'].max()))
 
+with st.sidebar.expander("See more ..."):
+    energy_selected = st.slider(
+         'Select energy',
+         0, energy_max, energy_max)
+
+    sugar_selected = st.slider(
+         'Select sugar',
+         0.0, 100.0, (25.0, 75.0))
+
+    salt_selected = st.slider(
+         'Select salt',
+         0.0, 100.0, (25.0, 75.0))
+
+    additives_select = st.slider(
+         'Select additives',
+         0, additives_max, additives_max)
+
+#st.dataframe(df_selected[df_selected.sugar_100g >= sugar_selected[0]])
+
+
+df_food = df_selected[
+                (df_selected.energy_100g <= energy_selected) &
+                (df_selected.sugars_100g >= sugar_selected[0]) &
+                (df_selected.sugars_100g <= sugar_selected[1]) &
+                (df_selected.salt_100g >= salt_selected[0]) &
+                (df_selected.salt_100g <= salt_selected[1]) &
+                (df_selected.additives_n <= additives_select)
+                ]
 
 # header of web application
 
@@ -51,8 +85,9 @@ st.header('Using the data collected from OpenFoodFacts')
 '''
 #### Each of us has it's own preferences of food. Someone are interested in meat/fish, other are looking for cheese, some are looking for some drinks.
 But the hole variety of theese foods with lots of nutrition facts makes difficult to make a good selection.
- - Some desises can impose/limit to eat some foods (ex: sugar/salt limitter),
- - We can have an active life so the need of energy foods is higher then if we have an sitting proffesion,
+ - We can have an active life so the need of energy foods is higher then if we have an sitting proffesion.
+ - Some desises can impose/limit to eat some foods (ex: sugar/salt/additives limitter). Sugars higher blood pressure, inflammation, weight gain, diabetes, and fatty liver disease — are all linked to an increased risk for heart attack and stroke.
+
 In my data analyse project I propose to analyse the nutrition food facts, and porpose an application to help the user understand the food nutrition facts, and make a decision
 on the desired food.
 '''
@@ -62,18 +97,7 @@ st.pyplot(fig_words)
 
 df_categories =  get_pandas_catVar_numVar(df_selected, catVar='my_categoty', numVar=option_var_100g)
 
-with st.sidebar.expander("See more ..."):
-    energy_selected = st.slider(
-         'Select energy',
-         0, energy_max, 50)
 
-    sugar_selected = st.slider(
-         'Select sugar',
-         0.0, 100.0, (25.0, 75.0))
-
-    salt_selected = st.slider(
-         'Select salt',
-         0.0, 100.0, (25.0, 75.0))
 
 
 col1, col2= st.columns(2)
@@ -134,4 +158,7 @@ with col4:
 # propose 3 foods for each category having energy sugar and salt selected
 
 with st.expander("Proposals"):
-    st.write("propose 3 foods for each category having energy sugar and salt selected")
+    st.dataframe(df_food.head())
+
+#    for index, row in df_food.iterrows():
+#        st.write('Product: {0} from {1} with {2} additives, {3} sugar and {4} salt in 100g'.format(row["product_name"], row["countries_fr"], int(row['additives_n']), row['sugars_100g'], row['sugars_100g']))
