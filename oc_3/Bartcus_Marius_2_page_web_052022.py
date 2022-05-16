@@ -158,7 +158,12 @@ with col4:
 # propose 3 foods for each category having energy sugar and salt selected
 
 with st.expander("Proposals"):
-    st.dataframe(df_food.head())
+    st.dataframe(df_food[['product_name', 'my_categoty',
+                        'nutrition-score-fr_100g', 'nutrition_grade_fr',
+                        'energy_100g', 'sugars_100g',
+                        'salt_100g', 'additives_n']]
+                        .set_index('product_name')
+                        .head())
 
 #    for index, row in df_food.iterrows():
 #        st.write('Product: {0} from {1} with {2} additives, {3} sugar and {4} salt in 100g'.format(row["product_name"], row["countries_fr"], int(row['additives_n']), row['sugars_100g'], row['sugars_100g']))
