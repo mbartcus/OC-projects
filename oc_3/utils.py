@@ -119,7 +119,6 @@ def plot_density(df, columns = np.NaN, dt = DensityTypes.Density):
         columns = df.select_dtypes(include=np.number).columns
 
     fig, axes = plt.subplots(round(len(columns)/2+.1), 2, figsize=(30, 15), constrained_layout=True);
-
     on_col=0
     on_line=0
     for index, col in enumerate(columns):
@@ -133,6 +132,7 @@ def plot_density(df, columns = np.NaN, dt = DensityTypes.Density):
         axes[on_line, on_col%2].set_ylabel('Density', fontsize=15);
         if on_col%2 == 1: on_line+=1
         on_col+=1;
+
     plt.show();
 
 def plot_correlation(df):
