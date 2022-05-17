@@ -4,3 +4,4 @@
 *.csv
 *.ipynb
 *-checkpoint.py
+*.zip
