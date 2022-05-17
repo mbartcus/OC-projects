@@ -7,6 +7,47 @@ import pandas as pd
 import re
 from wordcloud import WordCloud, STOPWORDS
 
+# Function to calculate missing values by column# Funct 
+def missing_values_table(df):
+        # Total missing values
+        mis_val = df.isnull().sum()
+        
+        # Percentage of missing values
+        mis_val_percent = 100 * df.isnull().sum() / len(df)
+        
+        # Make a table with the results
+        mis_val_table = pd.concat([mis_val, mis_val_percent], axis=1)
+        
+        # Rename the columns
+        mis_val_table_ren_columns = mis_val_table.rename(
+        columns = {0 : 'Missing Values', 1 : '% of Total Values'})
+        
+        # Sort the table by percentage of missing descending
+        mis_val_table_ren_columns = mis_val_table_ren_columns[
+            mis_val_table_ren_columns.iloc[:,1] != 0].sort_values(
+        '% of Total Values', ascending=False).round(1)
+        
+        # Print some summary information
+        print ("Your selected dataframe has " + str(df.shape[1]) + " columns.\n"      
+            "There are " + str(mis_val_table_ren_columns.shape[0]) +
+              " columns that have missing values.")
+        
+        # Return the dataframe with missing information
+        return mis_val_table_ren_columns
+
+def plot_nan_in_pourcent_from_data(df):
+    # verifié les valeurs manquants en affichant le pourcentage
+    dd = df.isna().mean().sort_values(ascending=True)*100
+    #plt.figure(figsize=(15, 10));
+    fig = plt.figure(figsize=(15, 10));
+    axes = sns.barplot(x=dd.values, y=dd.index, data=dd);
+    axes.set_xticks([]);
+    axes.set_yticks([0, 20, 40, 60, 80, 100]);
+    plt.title('NaN Values on entire dataset',fontsize=25);
+    plt.xlabel('Variables',fontsize=15);
+    plt.ylabel('% of NaN values',fontsize=15);
+    del dd;
+
 # afficher tout le dataset
 def plot_data(df):
     '''
@@ -135,17 +176,25 @@ def plot_density(df, columns = np.NaN, dt = DensityTypes.Density):
 
     plt.show();
 
-def plot_correlation(df):
-    corr = df.corr()
-    # Fill redundant values: diagonal and upper half with NaNs
-    mask = np.zeros_like(corr, dtype=bool)
-    mask[np.triu_indices_from(mask)] = True
-    corr[mask] = np.nan
-    return (corr
-     .style
-     .background_gradient(cmap='coolwarm', axis=None, vmin=-1, vmax=1)
-     .highlight_null(null_color='#f1f1f1')  # Color NaNs grey
-    )
+def plot_correlation(df, col =  np.nan):
+    if np.isnan(col):
+        corr = df.corr()
+        # Fill redundant values: diagonal and upper half with NaNs
+        mask = np.zeros_like(corr, dtype=bool)
+        mask[np.triu_indices_from(mask)] = True
+        corr[mask] = np.nan
+        return (corr
+            .style
+            .background_gradient(cmap='coolwarm', axis=None, vmin=-1, vmax=1)
+            .highlight_null(null_color='#f1f1f1')  # Color NaNs grey
+        )
+    else:
+        '''
+        correlation for one variable
+        '''
+        corr = df.corr()[col].sort_values()
+        return corr
+    
 
 def get_values_of_interest(df, col):
     '''
