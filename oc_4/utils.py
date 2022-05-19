@@ -159,14 +159,14 @@ def plot_density(df, columns = np.NaN, dt = DensityTypes.Density):
     if columns is np.NaN:
         columns = df.select_dtypes(include=np.number).columns
 
-    fig, axes = plt.subplots(round(len(columns)/2+.1), 2, figsize=(30, 15), constrained_layout=True);
+    fig, axes = plt.subplots(nrows = round(len(columns)/2+.1), ncols = 2, figsize=(30, 15), constrained_layout=True);
     on_col=0
     on_line=0
     for index, col in enumerate(columns):
         if (dt == DensityTypes.Density):
-            sns.distplot(df[col], label=col, ax=axes[on_line, on_col%2], bins=100);
+            sns.distplot(a = df[col], label=col, ax=axes[on_line, on_col%2], bins=100);
         elif (dt == DensityTypes.Boxplot):
-            sns.boxplot(df[col], ax=axes[on_line, on_col%2]);
+            sns.boxplot(data = df[col], ax=axes[on_line, on_col%2], orient = 'h');
         #sns.histplot(df[col], kde=True, stat="density", linewidth=0, ax=axes[on_line, on_col%2])
         #axes[on_line, on_col%2].set_title('{0} distribution'.format(col,fontsize=25));
         axes[on_line, on_col%2].set_xlabel(col, fontsize=15);
@@ -241,3 +241,31 @@ def eta_squared(df, var1, var2):
     SCT = sum([(yj-moyenne_y)**2 for yj in Y])
     SCE = sum([c['ni']*(c['moyenne_classe']-moyenne_y)**2 for c in classes])
     return SCE/SCT
+
+
+
+
+def show_values(axs, orient="v", space=.01):
+    """
+    # You can use the following function to display the values on a seaborn barplot:
+    inspired from : https://www.statology.org/seaborn-barplot-show-values/
+    """
+    def _single(ax):
+        if orient == "v":
+            for p in ax.patches:
+                _x = p.get_x() + p.get_width() / 2
+                _y = p.get_y() + p.get_height() + (p.get_height()*0.01)
+                value = '{:.2f}'.format(p.get_height())
+                ax.text(_x, _y, value, ha="center", fontsize=15) 
+        elif orient == "h":
+            for p in ax.patches:
+                _x = p.get_x() + p.get_width() + float(space)
+                _y = p.get_y() + p.get_height() - (p.get_height()*0.5)
+                value = '{:.2f}'.format(p.get_width())
+                ax.text(_x, _y, value, ha="left", fontsize=15)
+
+    if isinstance(axs, np.ndarray):
+        for idx, ax in np.ndenumerate(axs):
+            _single(ax)
+    else:
+        _single(axs)
