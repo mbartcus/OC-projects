@@ -9,7 +9,7 @@ from sklearn.linear_model import LinearRegression
 
 st.set_page_config(layout="wide")
 
-df = pd.read_csv('/Users/marius/Documents/GitHub/OC-projects/oc_3/data/df_app.csv')
+df = pd.read_csv('/Users/bartcus/Documents/GitHub/OC-projects/oc_3/data/df_app.csv')
 
 with st.sidebar.container():
     options_categories_food = st.multiselect(
