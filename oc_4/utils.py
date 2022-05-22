@@ -269,3 +269,30 @@ def show_values(axs, orient="v", space=.01):
             _single(ax)
     else:
         _single(axs)
+        
+        
+def encode_categorical_variables(df):
+    le = LabelEncoder()
+    le_count = 0
+
+    # Iterate through the columns
+    for col in df:
+        if df[col].dtype == 'object':
+            # If 2 or fewer unique categories
+            if len(list(df[col].unique())) <= 2:
+                # Train on the training data
+                le.fit(df[col])
+                # Transform both training and testing data
+                df[col] = le.transform(df[col])
+
+                # Keep track of how many columns were label encoded
+                le_count += 1
+
+    print('%d columns were label encoded.' % le_count)
+    
+    # one-hot encoding of categorical variables
+    # Use dummies if > 2 values in the categorical variable
+    df = pd.get_dummies(df)
+
+    print('Training Features shape: ', df.shape)
+    return df
