@@ -1,0 +1,10 @@
+conda create -n oc3 python=3.7
+conda install jupyter
+conda install pandas
+conda install matplotlib
+conda install seaborn
+conda install -c conda-forge wordcloud
+pip install -U scikit-learn
+pip install streamlit
+
+conda install -c conda-forge lightgbm

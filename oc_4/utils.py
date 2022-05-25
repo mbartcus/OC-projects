@@ -7,6 +7,10 @@ import pandas as pd
 import re
 from wordcloud import WordCloud, STOPWORDS
 
+
+# sklearn preprocessing for dealing with categorical variables
+from sklearn.preprocessing import LabelEncoder
+
 # Function to calculate missing values by column# Funct 
 def missing_values_table(df):
         # Total missing values
@@ -271,28 +275,130 @@ def show_values(axs, orient="v", space=.01):
         _single(axs)
         
         
-def encode_categorical_variables(df):
+def encode_categorical_variables(df, nan_as_category = True):
+    original_columns = list(df.columns)
+    categorical_columns = [col for col in df.columns if df[col].dtype == 'object']
+    
     le = LabelEncoder()
     le_count = 0
 
-    # Iterate through the columns
-    for col in df:
-        if df[col].dtype == 'object':
-            # If 2 or fewer unique categories
-            if len(list(df[col].unique())) <= 2:
-                # Train on the training data
-                le.fit(df[col])
-                # Transform both training and testing data
-                df[col] = le.transform(df[col])
-
-                # Keep track of how many columns were label encoded
-                le_count += 1
-
-    print('%d columns were label encoded.' % le_count)
+    
+    for col in categorical_columns:
+        if len(list(df[col].unique())) <= 2:
+            # Train on the training data
+            le.fit(df[col])
+            # Transform both training and testing data
+            df[col] = le.transform(df[col])
+    
     
     # one-hot encoding of categorical variables
     # Use dummies if > 2 values in the categorical variable
-    df = pd.get_dummies(df)
+    df = pd.get_dummies(df, dummy_na= nan_as_category)
+    
+    new_columns = [c for c in df.columns if c not in original_columns]    
+    
+    return df, new_columns
 
-    print('Training Features shape: ', df.shape)
-    return df
+
+def get_correlations(df, var):
+    # gets the correlations between all the variables sorting by the variable var
+    return df.corr().abs().sort_values('TARGET', ascending=False, axis=0).sort_values('TARGET', ascending=False, axis=1)
+
+
+def high_decorelation(df_correlation, var, corr_min_threshold = 0.01):
+    highly_decorrelation = {}
+    for col in df_correlation.columns:
+        if col != var and (pd.isnull(df_correlation[col][var]) or abs(df_correlation[col][var]) < corr_min_threshold):
+                highly_decorrelation[col] = df_correlation[col][var]
+    
+    return highly_decorrelation
+
+
+def high_correlation(df_correlation, corr_max_threshold = 0.9):
+    highly_correlated = pd.DataFrame(columns=["pair", "correlation"])
+    for i in range(len(df_correlation.columns)):
+        for j in range(i + 1, len(df_correlation.columns)):
+            if df_correlation.iloc[i, j] > corr_max_threshold:
+                # variables are highly correlated
+                if df_train_corr.iloc[0, i] > df_train_corr.iloc[0, j]:
+                    # first variable is more correlated with the variable => we want to keep it
+                    keep_index = i
+                    drop_index = j
+                else:
+                    keep_index = j
+                    drop_index = i
+
+                highly_correlated.loc[df_correlation.columns[drop_index]] = {
+                    "pair": df_correlation.columns[keep_index],
+                    "correlation": df_correlation.iloc[i, j],
+                }
+
+    highly_correlated.sort_values(by="correlation", ascending=False)
+    return highly_correlated
+
+def remove_columns_regarding_correlation(df_train, df_train_corr, var='TARGET', hdc_make=True, hc_make=True):
+    if hdc_make:
+        cols_to_delete = list(high_decorelation(df_train_corr, var='TARGET', corr_min_threshold = 0.01).keys())
+        df_train.drop(columns=cols_to_delete,
+                        inplace=True,
+                        errors="ignore"
+                     )
+    if hc_make:
+        hc = high_correlation(df_train_corr, corr_max_threshold = 0.9)
+        df_train.drop(columns=hc.index,
+                      inplace=True,
+                      errors="ignore",
+        )
+    return df_train
+
+
+def process_encode_and_joining(df_train, df_previous_application, df_bureau):
+    with timer("Encoding datasets..."):
+        df_train, new_columns = encode_categorical_variables(df_train, nan_as_category = True)
+        df_previous_application, new_columns_application = encode_categorical_variables(df_previous_application, nan_as_category = True)
+        df_bureau, new_columns_bureau = encode_categorical_variables(df_bureau, nan_as_category = True)
+
+    with timer("Processing joining dataframes and creation of features...."):
+        # Bureau and bureau_balance numeric features
+        num_aggregations = {
+            'DAYS_CREDIT': ['min', 'max', 'mean', 'var'],
+            'DAYS_CREDIT_ENDDATE': ['min', 'max', 'mean'],
+            'DAYS_CREDIT_UPDATE': ['mean'],
+            'CREDIT_DAY_OVERDUE': ['max', 'mean'],
+            'AMT_CREDIT_SUM': ['max', 'mean', 'sum'],
+            'AMT_CREDIT_SUM_DEBT': ['max', 'mean', 'sum'],
+            'AMT_CREDIT_SUM_OVERDUE': ['mean'],
+            'AMT_CREDIT_SUM_LIMIT': ['mean', 'sum'],
+            'CNT_CREDIT_PROLONG': ['sum']
+            }
+        cat_aggregations = {}
+        for cat in new_columns_bureau: cat_aggregations[cat] = ['mean']
+        bureau_agg = df_bureau.groupby('SK_ID_CURR').agg({**num_aggregations, **cat_aggregations})
+        bureau_agg.columns = pd.Index(['BURO_' + e[0] + "_" + e[1].upper() for e in bureau_agg.columns.tolist()])
+
+        num_aggregations = {
+            'AMT_ANNUITY': ['min', 'max', 'mean'],
+            'AMT_APPLICATION': ['min', 'max', 'mean'],
+            'AMT_CREDIT': ['min', 'max', 'mean'],
+            'AMT_DOWN_PAYMENT': ['min', 'max', 'mean'],
+            'AMT_GOODS_PRICE': ['min', 'max', 'mean'],
+            'HOUR_APPR_PROCESS_START': ['min', 'max', 'mean'],
+            'RATE_DOWN_PAYMENT': ['min', 'max', 'mean'],
+            'DAYS_DECISION': ['min', 'max', 'mean'],
+            'CNT_PAYMENT': ['mean', 'sum'],
+        }
+
+        cat_aggregations = {}
+        for cat in new_columns_application: cat_aggregations[cat] = ['mean']
+        prev_agg = df_previous_application.groupby('SK_ID_CURR').agg({**num_aggregations, **cat_aggregations})
+        prev_agg.columns = pd.Index(['PREV_' + e[0] + "_" + e[1].upper() for e in prev_agg.columns.tolist()])
+
+        df_train = df_train.join(bureau_agg, how='left', on='SK_ID_CURR')
+        df_train = df_train.join(prev_agg, how='left', on='SK_ID_CURR')
+
+        df_train = df_train.rename(columns = lambda x:re.sub('[^A-Za-z0-9_]+', '', x))
+
+        del df_previous_application, df_bureau, bureau_agg, prev_agg
+        gc.collect()
+    
+    return df_train
