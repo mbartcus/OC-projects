@@ -59,11 +59,15 @@ def display_factorial_planes(X_projected, n_comp, pca, axis_ranks, labels=None, 
         if d2 < n_comp:
  
             # initialisation de la figure       
-            fig = plt.figure(figsize=(7,6))
+            fig = plt.figure(figsize=(15,8))
         
             # affichage des points
             if illustrative_var is None:
-                plt.scatter(X_projected[:, d1], X_projected[:, d2], alpha=alpha)
+                if labels is None:
+                    plt.scatter(X_projected[:, d1], X_projected[:, d2], alpha=alpha)
+                else:
+                    for l,i in enumerate(labels):
+                        plt.scatter(X_projected[:, d1], X_projected[:, d2], alpha=alpha, c=colors[i])
             else:
                 illustrative_var = np.array(illustrative_var)
                 for value in np.unique(illustrative_var):
@@ -72,10 +76,10 @@ def display_factorial_planes(X_projected, n_comp, pca, axis_ranks, labels=None, 
                 plt.legend()
 
             # affichage des labels des points
-            if labels is not None:
-                for i,(x,y) in enumerate(X_projected[:,[d1,d2]]):
-                    plt.text(x, y, labels[i],
-                              fontsize='14', ha='center',va='center') 
+            #if labels is not None:
+            #    for i,(x,y) in enumerate(X_projected[:,[d1,d2]]):
+            #        plt.text(x, y, labels[i],
+            #                  fontsize='14', ha='center',va='center') 
                 
             # détermination des limites du graphique
             boundary = np.max(np.abs(X_projected[:, [d1,d2]])) * 1.1
@@ -94,6 +98,7 @@ def display_factorial_planes(X_projected, n_comp, pca, axis_ranks, labels=None, 
             plt.show(block=False)
 
 def display_scree_plot(pca):
+    plt.figure(figsize=(15,8))
     scree = pca.explained_variance_ratio_*100
     plt.bar(np.arange(len(scree))+1, scree)
     plt.plot(np.arange(len(scree))+1, scree.cumsum(),c="red",marker='o')

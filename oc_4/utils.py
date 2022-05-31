@@ -3,13 +3,36 @@ import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
 import pandas as pd
+from contextlib import contextmanager
 
 import re
 from wordcloud import WordCloud, STOPWORDS
-
+import time
+import gc
 
 # sklearn preprocessing for dealing with categorical variables
 from sklearn.preprocessing import LabelEncoder
+
+from sklearn.base import is_classifier
+from sklearn.experimental import enable_halving_search_cv 
+from sklearn.model_selection import HalvingRandomSearchCV, StratifiedKFold, GridSearchCV
+from sklearn.metrics import (
+    accuracy_score,
+    average_precision_score,
+    confusion_matrix,
+    f1_score,
+    precision_recall_curve,
+    precision_score,
+    recall_score,
+    roc_auc_score,
+    roc_curve,
+)
+
+@contextmanager
+def timer(title):
+    t0 = time.time()
+    yield
+    print("{} - done in {:.0f}s".format(title, time.time() - t0))
 
 # Function to calculate missing values by column# Funct 
 def missing_values_table(df):
@@ -302,7 +325,7 @@ def encode_categorical_variables(df, nan_as_category = True):
 
 def get_correlations(df, var):
     # gets the correlations between all the variables sorting by the variable var
-    return df.corr().abs().sort_values('TARGET', ascending=False, axis=0).sort_values('TARGET', ascending=False, axis=1)
+    return df.corr().abs().sort_values(var, ascending=False, axis=0).sort_values(var, ascending=False, axis=1)
 
 
 def high_decorelation(df_correlation, var, corr_min_threshold = 0.01):
@@ -320,7 +343,7 @@ def high_correlation(df_correlation, corr_max_threshold = 0.9):
         for j in range(i + 1, len(df_correlation.columns)):
             if df_correlation.iloc[i, j] > corr_max_threshold:
                 # variables are highly correlated
-                if df_train_corr.iloc[0, i] > df_train_corr.iloc[0, j]:
+                if df_correlation.iloc[0, i] > df_correlation.iloc[0, j]:
                     # first variable is more correlated with the variable => we want to keep it
                     keep_index = i
                     drop_index = j
@@ -336,20 +359,21 @@ def high_correlation(df_correlation, corr_max_threshold = 0.9):
     highly_correlated.sort_values(by="correlation", ascending=False)
     return highly_correlated
 
-def remove_columns_regarding_correlation(df_train, df_train_corr, var='TARGET', hdc_make=True, hc_make=True):
+def remove_columns_regarding_correlation(df, df_corr, var='TARGET', hdc_make=True, hc_make=True):
     if hdc_make:
-        cols_to_delete = list(high_decorelation(df_train_corr, var='TARGET', corr_min_threshold = 0.01).keys())
-        df_train.drop(columns=cols_to_delete,
-                        inplace=True,
+        hdc = high_decorelation(df_corr, var='TARGET', corr_min_threshold = 0.01).keys()
+        cols_to_delete = list(hdc)
+        df = df.drop(columns=cols_to_delete,
+                        #inplace=True,
                         errors="ignore"
                      )
     if hc_make:
-        hc = high_correlation(df_train_corr, corr_max_threshold = 0.9)
-        df_train.drop(columns=hc.index,
-                      inplace=True,
+        hc = high_correlation(df_corr, corr_max_threshold = 0.9)
+        df = df.drop(columns=hc.index,
+                      #inplace=True,
                       errors="ignore",
         )
-    return df_train
+    return df
 
 
 def process_encode_and_joining(df_train, df_previous_application, df_bureau):
@@ -402,3 +426,219 @@ def process_encode_and_joining(df_train, df_previous_application, df_bureau):
         gc.collect()
     
     return df_train
+
+
+
+
+def find_best_params_classifier(X_train, y_train, X_test, y_test, estimator, params = None, verbose=0):
+    """Runs cross validation to find the best hyper-parameters of estimator.
+    Args:
+        X_train (pd.DataFrame): training data
+        y_train (pd.Series): training labels
+        X_test (pd.DataFrame): testing data
+        y_test (pd.Series): testing labels
+        estimator (ClassifierMixin): Classifier
+        params (dict[str, list[Union[str, float, int, bool]]], optional):
+            hyper-parameters range for cross validation. Defaults to {}.
+    Raises:
+        ValueError: Error if estimator is not a classifier
+    Returns:
+        dict[str, Any]: Classifier optimization results.
+    """
+    if not is_classifier(estimator):
+        logging.error(f"{estimator} is not a classifier.")
+        raise ValueError(f"{estimator} is not a classifier.")
+
+    clf = HalvingRandomSearchCV(
+        estimator=estimator,
+        param_distributions=params,
+        # StratifiedKFold Cross Validator
+        # StratifiedKFold permet de séparer les données en nombre de folds de
+        # manière stratifiée. Les proportions des classes sont conservées.
+        cv=StratifiedKFold(n_splits=5, shuffle=True, random_state=0),
+        # F1 Score
+        # F1 Score permet de mesurer la qualité d'un modèle en évaluant
+        # la précision et le recall.
+        scoring="f1",
+        verbose=verbose,
+        n_jobs=-1
+    ).fit(
+        X=X_train,
+        y=y_train,
+    )
+
+    t0 = time.time()
+    y_pred = clf.predict(X_test)
+    predict_time = time.time() - t0
+
+    if hasattr(clf, "predict_proba"):
+        y_pred_proba = clf.predict_proba(X_test)[:, 1]
+    elif hasattr(clf, "decision_function"):
+        y_pred_proba = clf.decision_function(X_test)
+    else:
+        y_pred_proba = y_pred
+
+    return {
+        "classifier": clf,
+        "model": clf.best_estimator_,
+        "params": clf.best_params_,
+        "score": clf.best_score_,
+        "predict_time": predict_time,
+        "cv_results_": clf.cv_results_,
+        "best_index_": clf.best_index_,
+        "confusion_matrix": confusion_matrix(y_test, y_pred),
+        "f1": f1_score(y_test, y_pred),
+        "accuracy": accuracy_score(y_test, y_pred),
+        "precision": precision_score(y_test, y_pred),
+        "recall": recall_score(y_test, y_pred),
+        "average_precision": average_precision_score(y_test, y_pred_proba),
+        "precision_recall_curve": precision_recall_curve(y_test, y_pred_proba),
+        "roc_auc_score": roc_auc_score(y_test, y_pred_proba),
+        "roc_curve": roc_curve(y_test, y_pred_proba),
+    }
+
+
+
+
+
+def make_confusion_matrix(cf,
+                          group_names=None,
+                          categories='auto',
+                          count=True,
+                          percent=True,
+                          cbar=True,
+                          xyticks=True,
+                          xyplotlabels=True,
+                          sum_stats=True,
+                          figsize=None,
+                          cmap='Blues',
+                          title=None,
+                         ax=None):
+    '''
+    Thanks to https://github.com/DTrimarchi10/confusion_matrix
+    
+    This function will make a pretty plot of an sklearn Confusion Matrix cm using a Seaborn heatmap visualization.
+    Arguments
+    ---------
+    cf:            confusion matrix to be passed in
+    group_names:   List of strings that represent the labels row by row to be shown in each square.
+    categories:    List of strings containing the categories to be displayed on the x,y axis. Default is 'auto'
+    count:         If True, show the raw number in the confusion matrix. Default is True.
+    normalize:     If True, show the proportions for each category. Default is True.
+    cbar:          If True, show the color bar. The cbar values are based off the values in the confusion matrix.
+                   Default is True.
+    xyticks:       If True, show x and y ticks. Default is True.
+    xyplotlabels:  If True, show 'True Label' and 'Predicted Label' on the figure. Default is True.
+    sum_stats:     If True, display summary statistics below the figure. Default is True.
+    figsize:       Tuple representing the figure size. Default will be the matplotlib rcParams value.
+    cmap:          Colormap of the values displayed from matplotlib.pyplot.cm. Default is 'Blues'
+                   See http://matplotlib.org/examples/color/colormaps_reference.html
+                   
+    title:         Title for the heatmap. Default is None.
+    '''
+
+
+    # CODE TO GENERATE TEXT INSIDE EACH SQUARE
+    blanks = ['' for i in range(cf.size)]
+
+    if group_names and len(group_names)==cf.size:
+        group_labels = ["{}\n".format(value) for value in group_names]
+    else:
+        group_labels = blanks
+
+    if count:
+        group_counts = ["{0:0.0f}\n".format(value) for value in cf.flatten()]
+    else:
+        group_counts = blanks
+
+    if percent:
+        group_percentages = ["{0:.2%}".format(value) for value in cf.flatten()/np.sum(cf)]
+    else:
+        group_percentages = blanks
+
+    box_labels = [f"{v1}{v2}{v3}".strip() for v1, v2, v3 in zip(group_labels,group_counts,group_percentages)]
+    box_labels = np.asarray(box_labels).reshape(cf.shape[0],cf.shape[1])
+
+
+    # CODE TO GENERATE SUMMARY STATISTICS & TEXT FOR SUMMARY STATS
+    if sum_stats:
+        #Accuracy is sum of diagonal divided by total observations
+        accuracy  = np.trace(cf) / float(np.sum(cf))
+
+        #if it is a binary confusion matrix, show some more stats
+        if len(cf)==2:
+            #Metrics for Binary Confusion Matrices
+            precision = cf[1,1] / sum(cf[:,1])
+            recall    = cf[1,1] / sum(cf[1,:])
+            f1_score  = 2*precision*recall / (precision + recall)
+            stats_text = "\n\nAccuracy={:0.3f}\nPrecision={:0.3f}\nRecall={:0.3f}\nF1 Score={:0.3f}".format(
+                accuracy,precision,recall,f1_score)
+        else:
+            stats_text = "\n\nAccuracy={:0.3f}".format(accuracy)
+    else:
+        stats_text = ""
+
+
+    # SET FIGURE PARAMETERS ACCORDING TO OTHER ARGUMENTS
+    if figsize==None:
+        #Get default figure size if not set
+        figsize = plt.rcParams.get('figure.figsize')
+
+    if xyticks==False:
+        #Do not show categories if xyticks is False
+        categories=False
+
+
+    # MAKE THE HEATMAP VISUALIZATION
+    if ax is None:
+        plt.figure(figsize=figsize)
+        
+    sns.heatmap(cf,annot=box_labels,fmt="",cmap=cmap,cbar=cbar,xticklabels=categories,yticklabels=categories, ax=ax)
+    if ax is None:
+        if xyplotlabels:
+            plt.ylabel('True label')
+            plt.xlabel('Predicted label' + stats_text)
+        else:
+            plt.xlabel(stats_text)
+
+        if title:
+            plt.title(title)
+    else:
+        if xyplotlabels:
+            ax.set_ylabel('True label')
+            ax.set_xlabel('Predicted label' + stats_text)
+        else:
+            ax.set_xlabel(stats_text)
+
+        if title:
+            ax.set_title(title)
+            
+            
+            
+def plot_result_stats(model_res, label=None):      
+    cf_matrix = model_res['confusion_matrix']
+    fpr, tpr, _ = model_res['roc_curve'];
+    lr_precision, lr_recall, _ = model_res['precision_recall_curve'];
+
+
+    labels = ['True Neg','False Pos','False Neg','True Pos']
+    categories = ['0', '1']
+
+
+    fig, axes = plt.subplots(1, 3, figsize=(30, 10));
+    make_confusion_matrix(cf_matrix, 
+                          group_names=labels,
+                          categories=categories, 
+                          figsize = (15,10),
+                          cmap = 'inferno',
+                          ax=axes[0]);
+
+    sns.lineplot(fpr, tpr, marker='.', label=label, ax=axes[1]);
+    axes[1].set_title('ROC curve', fontsize=25)
+    axes[1].set_xlabel('False Positive Rate', fontsize=20);
+    axes[1].set_ylabel('True Positive Rate', fontsize=20);
+
+    sns.lineplot(lr_recall, lr_precision, marker='.', label=label, ax=axes[2]);
+    axes[2].set_title('Precision Recall Curve', fontsize=25)
+    axes[2].set_xlabel('Recall', fontsize=20);
+    axes[2].set_ylabel('Precision', fontsize=20);
