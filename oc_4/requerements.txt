@@ -9,3 +9,6 @@ pip install streamlit
 
 conda install -c conda-forge lightgbm
 pip install imbalanced-learn
+
+conda install -c riipl-org shap
+conda install -c conda-forge lime 

@@ -615,7 +615,15 @@ def make_confusion_matrix(cf,
             
             
             
-def plot_result_stats(model_res, label=None):      
+def plot_result_stats(model_res, label=None): 
+    #"f1": f1_score(y_test, y_pred),
+    #"accuracy": accuracy_score(y_test, y_pred),
+    #"precision": precision_score(y_test, y_pred),
+    #"recall": recall_score(y_test, y_pred),
+    #"average_precision": average_precision_score(y_test, y_pred_proba),
+    #"precision_recall_curve": precision_recall_curve(y_test, y_pred_proba),
+    #"roc_auc_score": roc_auc_score(y_test, y_pred_proba),
+    #"roc_curve": roc_curve(y_test, y_pred_proba),
     cf_matrix = model_res['confusion_matrix']
     fpr, tpr, _ = model_res['roc_curve'];
     lr_precision, lr_recall, _ = model_res['precision_recall_curve'];
@@ -633,12 +641,35 @@ def plot_result_stats(model_res, label=None):
                           cmap = 'inferno',
                           ax=axes[0]);
 
-    sns.lineplot(fpr, tpr, marker='.', label=label, ax=axes[1]);
+    sns.lineplot(fpr, tpr, label=label, linewidth = 1.5, ax=axes[1]);
     axes[1].set_title('ROC curve', fontsize=25)
     axes[1].set_xlabel('False Positive Rate', fontsize=20);
     axes[1].set_ylabel('True Positive Rate', fontsize=20);
 
-    sns.lineplot(lr_recall, lr_precision, marker='.', label=label, ax=axes[2]);
+    sns.lineplot(lr_recall, lr_precision, label=label, linewidth = 1.5, ax=axes[2]);
     axes[2].set_title('Precision Recall Curve', fontsize=25)
     axes[2].set_xlabel('Recall', fontsize=20);
     axes[2].set_ylabel('Precision', fontsize=20);
+    
+
+    
+def plot_varimportance(model_res, cols, cols_nr):
+    if hasattr(model_res['model'], 'coef_'):
+        feature_importance = model_res['model'].coef_[0]
+    elif hasattr(model_res['model'], 'feature_importances_'):
+        feature_importance = model_res['model'].feature_importances_[0]
+    else:
+        raise ValueError('The model can not show the feature importance')
+    
+    top_coefficients = pd.Series(
+        feature_importance,
+        cols,
+    ).map(abs).sort_values(ascending=False).head(cols_nr)
+    top_coefficients = pd.DataFrame(top_coefficients).reset_index()
+    top_coefficients.columns=['cols', 'coef']
+    plt.figure(figsize=(15,8))
+    sns.barplot(y = 'cols', x = 'coef', data = top_coefficients)
+    plt.title('Top {0} important variables'.format(cols_nr), fontsize=20);
+    plt.xlabel('Coefficient', fontsize=15);
+    plt.ylabel('Columns', fontsize=15);
+    plt.show();
