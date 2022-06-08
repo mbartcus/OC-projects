@@ -12,3 +12,5 @@ pip install imbalanced-learn
 
 conda install -c riipl-org shap
 conda install -c conda-forge lime 
+
+conda install -c conda-forge xgboost

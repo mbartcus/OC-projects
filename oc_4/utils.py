@@ -14,7 +14,7 @@ import gc
 from sklearn.preprocessing import LabelEncoder
 
 from sklearn.base import is_classifier
-from sklearn.experimental import enable_halving_search_cv 
+from sklearn.experimental import enable_halving_search_cv
 from sklearn.model_selection import HalvingRandomSearchCV, StratifiedKFold, GridSearchCV
 from sklearn.metrics import (
     accuracy_score,
@@ -26,7 +26,15 @@ from sklearn.metrics import (
     recall_score,
     roc_auc_score,
     roc_curve,
+    fbeta_score,
+    make_scorer
 )
+
+import pickle
+
+
+from sklearn.feature_selection import SelectFromModel, SelectKBest, f_classif
+import heapq
 
 @contextmanager
 def timer(title):
@@ -34,31 +42,31 @@ def timer(title):
     yield
     print("{} - done in {:.0f}s".format(title, time.time() - t0))
 
-# Function to calculate missing values by column# Funct 
+# Function to calculate missing values by column# Funct
 def missing_values_table(df):
         # Total missing values
         mis_val = df.isnull().sum()
-        
+
         # Percentage of missing values
         mis_val_percent = 100 * df.isnull().sum() / len(df)
-        
+
         # Make a table with the results
         mis_val_table = pd.concat([mis_val, mis_val_percent], axis=1)
-        
+
         # Rename the columns
         mis_val_table_ren_columns = mis_val_table.rename(
         columns = {0 : 'Missing Values', 1 : '% of Total Values'})
-        
+
         # Sort the table by percentage of missing descending
         mis_val_table_ren_columns = mis_val_table_ren_columns[
             mis_val_table_ren_columns.iloc[:,1] != 0].sort_values(
         '% of Total Values', ascending=False).round(1)
-        
+
         # Print some summary information
-        print ("Your selected dataframe has " + str(df.shape[1]) + " columns.\n"      
+        print ("Your selected dataframe has " + str(df.shape[1]) + " columns.\n"
             "There are " + str(mis_val_table_ren_columns.shape[0]) +
               " columns that have missing values.")
-        
+
         # Return the dataframe with missing information
         return mis_val_table_ren_columns
 
@@ -221,7 +229,7 @@ def plot_correlation(df, col =  np.nan):
         '''
         corr = df.corr()[col].sort_values()
         return corr
-    
+
 
 def get_values_of_interest(df, col):
     '''
@@ -283,7 +291,7 @@ def show_values(axs, orient="v", space=.01):
                 _x = p.get_x() + p.get_width() / 2
                 _y = p.get_y() + p.get_height() + (p.get_height()*0.01)
                 value = '{:.2f}'.format(p.get_height())
-                ax.text(_x, _y, value, ha="center", fontsize=15) 
+                ax.text(_x, _y, value, ha="center", fontsize=15)
         elif orient == "h":
             for p in ax.patches:
                 _x = p.get_x() + p.get_width() + float(space)
@@ -296,30 +304,30 @@ def show_values(axs, orient="v", space=.01):
             _single(ax)
     else:
         _single(axs)
-        
-        
+
+
 def encode_categorical_variables(df, nan_as_category = True):
     original_columns = list(df.columns)
     categorical_columns = [col for col in df.columns if df[col].dtype == 'object']
-    
+
     le = LabelEncoder()
     le_count = 0
 
-    
+
     for col in categorical_columns:
         if len(list(df[col].unique())) <= 2:
             # Train on the training data
             le.fit(df[col])
             # Transform both training and testing data
             df[col] = le.transform(df[col])
-    
-    
+
+
     # one-hot encoding of categorical variables
     # Use dummies if > 2 values in the categorical variable
     df = pd.get_dummies(df, dummy_na= nan_as_category)
-    
-    new_columns = [c for c in df.columns if c not in original_columns]    
-    
+
+    new_columns = [c for c in df.columns if c not in original_columns]
+
     return df, new_columns
 
 
@@ -333,7 +341,7 @@ def high_decorelation(df_correlation, var, corr_min_threshold = 0.01):
     for col in df_correlation.columns:
         if col != var and (pd.isnull(df_correlation[col][var]) or abs(df_correlation[col][var]) < corr_min_threshold):
                 highly_decorrelation[col] = df_correlation[col][var]
-    
+
     return highly_decorrelation
 
 
@@ -424,14 +432,15 @@ def process_encode_and_joining(df_train, df_previous_application, df_bureau):
 
         del df_previous_application, df_bureau, bureau_agg, prev_agg
         gc.collect()
-    
+
     return df_train
 
 
 
 
-def find_best_params_classifier(X_train, y_train, X_test, y_test, estimator, params = None, verbose=0):
-    """Runs cross validation to find the best hyper-parameters of estimator.
+
+def get_best_classifier(X_train, y_train, X_test, y_test, estimator, params = {}, verbose=0):
+    """Runs cross validation to find the best estimator hyper-parameters.
     Args:
         X_train (pd.DataFrame): training data
         y_train (pd.Series): training labels
@@ -449,17 +458,14 @@ def find_best_params_classifier(X_train, y_train, X_test, y_test, estimator, par
         logging.error(f"{estimator} is not a classifier.")
         raise ValueError(f"{estimator} is not a classifier.")
 
+    ftwo_scorer = make_scorer(fbeta_score, beta=2)
+
     clf = HalvingRandomSearchCV(
         estimator=estimator,
         param_distributions=params,
-        # StratifiedKFold Cross Validator
-        # StratifiedKFold permet de séparer les données en nombre de folds de
-        # manière stratifiée. Les proportions des classes sont conservées.
+
         cv=StratifiedKFold(n_splits=5, shuffle=True, random_state=0),
-        # F1 Score
-        # F1 Score permet de mesurer la qualité d'un modèle en évaluant
-        # la précision et le recall.
-        scoring="f1",
+        scoring=ftwo_scorer, # "f1",
         verbose=verbose,
         n_jobs=-1
     ).fit(
@@ -488,6 +494,7 @@ def find_best_params_classifier(X_train, y_train, X_test, y_test, estimator, par
         "best_index_": clf.best_index_,
         "confusion_matrix": confusion_matrix(y_test, y_pred),
         "f1": f1_score(y_test, y_pred),
+        "fbeta": fbeta_score(y_test, y_pred, beta=2),
         "accuracy": accuracy_score(y_test, y_pred),
         "precision": precision_score(y_test, y_pred),
         "recall": recall_score(y_test, y_pred),
@@ -516,7 +523,7 @@ def make_confusion_matrix(cf,
                          ax=None):
     '''
     Thanks to https://github.com/DTrimarchi10/confusion_matrix
-    
+
     This function will make a pretty plot of an sklearn Confusion Matrix cm using a Seaborn heatmap visualization.
     Arguments
     ---------
@@ -533,7 +540,7 @@ def make_confusion_matrix(cf,
     figsize:       Tuple representing the figure size. Default will be the matplotlib rcParams value.
     cmap:          Colormap of the values displayed from matplotlib.pyplot.cm. Default is 'Blues'
                    See http://matplotlib.org/examples/color/colormaps_reference.html
-                   
+
     title:         Title for the heatmap. Default is None.
     '''
 
@@ -592,7 +599,7 @@ def make_confusion_matrix(cf,
     # MAKE THE HEATMAP VISUALIZATION
     if ax is None:
         plt.figure(figsize=figsize)
-        
+
     sns.heatmap(cf,annot=box_labels,fmt="",cmap=cmap,cbar=cbar,xticklabels=categories,yticklabels=categories, ax=ax)
     if ax is None:
         if xyplotlabels:
@@ -612,10 +619,10 @@ def make_confusion_matrix(cf,
 
         if title:
             ax.set_title(title)
-            
-            
-            
-def plot_result_stats(model_res, label=None): 
+
+
+
+def plot_result_stats(model_res, label=None, title_fig=None):
     #"f1": f1_score(y_test, y_pred),
     #"accuracy": accuracy_score(y_test, y_pred),
     #"precision": precision_score(y_test, y_pred),
@@ -634,9 +641,11 @@ def plot_result_stats(model_res, label=None):
 
 
     fig, axes = plt.subplots(1, 3, figsize=(30, 10));
-    make_confusion_matrix(cf_matrix, 
+    fig.suptitle(title_fig, fontsize=30)
+
+    make_confusion_matrix(cf_matrix,
                           group_names=labels,
-                          categories=categories, 
+                          categories=categories,
                           figsize = (15,10),
                           cmap = 'inferno',
                           ax=axes[0]);
@@ -650,9 +659,9 @@ def plot_result_stats(model_res, label=None):
     axes[2].set_title('Precision Recall Curve', fontsize=25)
     axes[2].set_xlabel('Recall', fontsize=20);
     axes[2].set_ylabel('Precision', fontsize=20);
-    
 
-    
+
+
 def plot_varimportance(model_res, cols, cols_nr):
     if hasattr(model_res['model'], 'coef_'):
         feature_importance = model_res['model'].coef_[0]
@@ -660,7 +669,7 @@ def plot_varimportance(model_res, cols, cols_nr):
         feature_importance = model_res['model'].feature_importances_[0]
     else:
         raise ValueError('The model can not show the feature importance')
-    
+
     top_coefficients = pd.Series(
         feature_importance,
         cols,
@@ -673,3 +682,42 @@ def plot_varimportance(model_res, cols, cols_nr):
     plt.xlabel('Coefficient', fontsize=15);
     plt.ylabel('Columns', fontsize=15);
     plt.show();
+
+
+## Feature Selection
+def feature_selection(data, k):
+    X = data.drop(["TARGET"], axis=1)
+    y = data["TARGET"]
+
+    column_names = X.columns  # Here you should use your dataframe's column names
+
+    fs = SelectKBest(f_classif, k=k)
+
+    # Applying feature selection
+    X_selected = fs.fit_transform(X, y)
+
+    # Find top features
+    # I create a list like [[ColumnName1, Score1] , [ColumnName2, Score2], ...]
+    # Then I sort in descending order on the score
+    #top_features = sorted(zip(column_names, fs.scores_), key=lambda x: x[1], reverse=True)
+    #print(top_features[:k])
+    dict_scores = dict(sorted(zip(column_names, fs.scores_) ))
+
+    cols = heapq.nlargest(k, dict_scores, key=dict_scores.get)
+
+    cols.append('TARGET')
+
+    return data[cols]
+
+
+def save_model(fname = 'finalized_model.sav'):
+    # save the model to disk
+    pickle.dump(model, open(filename, 'wb'))
+
+
+
+def load_model(fname = 'finalized_model.sav'):
+    # load the model from disk
+    loaded_model = pickle.load(open(filename, 'rb'))
+    result = loaded_model.score(X_test, Y_test)
+    return result
