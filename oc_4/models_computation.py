@@ -50,7 +50,7 @@ def timer(title):
 
 
 # Preprocess bureau.csv and bureau_balance.csv
-def modeling(X_train, y_train, X_test, y_test, mlclassifyalgs = ['dummy']):
+def modeling(X_train, y_train, X_test, y_test, mlclassifyalgs = ['dummy'], beta = 2):
     results = pd.DataFrame(columns=(
         'model',
         'params',
@@ -168,10 +168,11 @@ def modeling(X_train, y_train, X_test, y_test, mlclassifyalgs = ['dummy']):
                                               y_test=y_test,
                                               estimator=XGBClassifier(objective='binary:logistic',
                                                                         n_jobs=-1,
-                                                                        random_state=10)
+                                                                        random_state=10),
+                                                beta_param=beta
                                               )
-            results.loc['xgboost',:]=xgb_results
-            models['xgboost']=xgb_results
+            results.loc['xgboost{0}'.format(beta),:]=xgb_results
+            models['xgboost{0}'.format(beta)]=xgb_results
 
         elif alg == 'lgbm':
             print('LGBM Classifier....', flush=True)
@@ -180,9 +181,9 @@ def modeling(X_train, y_train, X_test, y_test, mlclassifyalgs = ['dummy']):
                 estimator=LGBMClassifier(
                 objective='binary',
                 n_jobs=-1,
-                random_state=10))
-            results.loc['lgbm',:]=lgbm_results
-            models['lgbm']=lgbm_results
+                random_state=10), beta_param=beta)
+            results.loc['lgbm{0}'.format(beta),:]=lgbm_results
+            models['lgbm{0}'.format(beta)]=lgbm_results
 
 
 
@@ -200,7 +201,7 @@ def modeling(X_train, y_train, X_test, y_test, mlclassifyalgs = ['dummy']):
             results.loc['naivebayes',:]=nb_results
             models['naivebayes']=nb_results
 
-    with open("models.pckl", "wb") as f:
+    with open("models{0}.pckl".format(beta), "wb") as f:
         #for model in models:
         pickle.dump(models, f)
     return results
@@ -213,12 +214,14 @@ def main():
     y_train = pd.read_csv("data/preprocess/y_train_oubalanced.csv")
     X_test = pd.read_csv("data/preprocess/X_test.csv")
     y_test = pd.read_csv("data/preprocess/y_test.csv")
-    alg = ['knn', 'dctree', 'naivebayes', 'svc', 'dummy', 'logreg', 'randforest', 'xgboost', 'lgbm'] #,
+    alg = ['xgboost', 'lgbm'] #['knn', 'dctree', 'naivebayes', 'svc', 'dummy', 'logreg', 'randforest', 'xgboost', 'lgbm'] #,
     with timer("Modeling all ..."):
-        results = modeling(X_train, y_train, X_test, y_test, alg)
-        del X_train, y_train, X_test, y_test
-        gc.collect()
-    results.to_csv("data/preprocess/results.csv")
+        for b in range(2, 10):
+            results = modeling(X_train, y_train, X_test, y_test, alg, beta=b)
+            gc.collect()
+
+
+            results.to_csv("data/preprocess/results{0}.csv".format(b))
 
 if __name__ == "__main__":
     with timer("Full model run"):

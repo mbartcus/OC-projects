@@ -439,7 +439,7 @@ def process_encode_and_joining(df_train, df_previous_application, df_bureau):
 
 
 
-def get_best_classifier(X_train, y_train, X_test, y_test, estimator, params = {}, verbose=0):
+def get_best_classifier(X_train, y_train, X_test, y_test, estimator, params = {}, beta_param=2, verbose=0):
     """Runs cross validation to find the best estimator hyper-parameters.
     Args:
         X_train (pd.DataFrame): training data
@@ -458,7 +458,7 @@ def get_best_classifier(X_train, y_train, X_test, y_test, estimator, params = {}
         logging.error(f"{estimator} is not a classifier.")
         raise ValueError(f"{estimator} is not a classifier.")
 
-    ftwo_scorer = make_scorer(fbeta_score, beta=2)
+    ftwo_scorer = make_scorer(fbeta_score, beta=beta_param)
 
     clf = HalvingRandomSearchCV(
         estimator=estimator,
@@ -494,7 +494,7 @@ def get_best_classifier(X_train, y_train, X_test, y_test, estimator, params = {}
         "best_index_": clf.best_index_,
         "confusion_matrix": confusion_matrix(y_test, y_pred),
         "f1": f1_score(y_test, y_pred),
-        "fbeta": fbeta_score(y_test, y_pred, beta=2),
+        "fbeta": fbeta_score(y_test, y_pred, beta=beta_param),
         "accuracy": accuracy_score(y_test, y_pred),
         "precision": precision_score(y_test, y_pred),
         "recall": recall_score(y_test, y_pred),
@@ -666,7 +666,7 @@ def plot_varimportance(model_res, cols, cols_nr):
     if hasattr(model_res['model'], 'coef_'):
         feature_importance = model_res['model'].coef_[0]
     elif hasattr(model_res['model'], 'feature_importances_'):
-        feature_importance = model_res['model'].feature_importances_[0]
+        feature_importance = model_res['model'].feature_importances_
     else:
         raise ValueError('The model can not show the feature importance')
 
