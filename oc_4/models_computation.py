@@ -201,7 +201,7 @@ def modeling(X_train, y_train, X_test, y_test, mlclassifyalgs = ['dummy'], beta 
             results.loc['naivebayes',:]=nb_results
             models['naivebayes']=nb_results
 
-    with open("models{0}.pckl".format(beta), "wb") as f:
+    with open("models_adison{0}_10.pckl".format(beta), "wb") as f:
         #for model in models:
         pickle.dump(models, f)
     return results
@@ -210,18 +210,18 @@ def modeling(X_train, y_train, X_test, y_test, mlclassifyalgs = ['dummy'], beta 
 
 
 def main():
-    X_train = pd.read_csv("data/preprocess/X_train_oubalanced.csv")
-    y_train = pd.read_csv("data/preprocess/y_train_oubalanced.csv")
+    X_train = pd.read_csv("data/preprocess/X_train_adisonbalanced.csv")
+    y_train = pd.read_csv("data/preprocess/y_train_adisonbalanced.csv")
     X_test = pd.read_csv("data/preprocess/X_test.csv")
     y_test = pd.read_csv("data/preprocess/y_test.csv")
-    alg = ['xgboost', 'lgbm'] #['knn', 'dctree', 'naivebayes', 'svc', 'dummy', 'logreg', 'randforest', 'xgboost', 'lgbm'] #,
+    alg = ['lgbm'] #['knn', 'dctree', 'naivebayes', 'svc', 'dummy', 'logreg', 'randforest', 'xgboost', 'lgbm'] #,
     with timer("Modeling all ..."):
-        for b in range(2, 10):
+        for b in range(10, 11):
             results = modeling(X_train, y_train, X_test, y_test, alg, beta=b)
             gc.collect()
 
 
-            results.to_csv("data/preprocess/results{0}.csv".format(b))
+            results.to_csv("data/preprocess/results_adisonoversampl{0}_10.csv".format(b))
 
 if __name__ == "__main__":
     with timer("Full model run"):
