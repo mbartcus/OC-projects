@@ -22,3 +22,4 @@ conda install -c conda-forge xgboost
 conda install -c conda-forge shapely
 pip install geopandas
 pip install squarify
+pip install yellowbrick
