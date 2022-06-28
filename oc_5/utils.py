@@ -212,18 +212,32 @@ def plot_density(df, columns = np.NaN, dt = DensityTypes.Density):
     plt.show();
 
     
-def plot_count_col(df, col, label_col=None, top=None):
+def plot_count_col(df, col, label_col=None, top=None, show_val = False, on_x=True):
     plt.figure(figsize=(15,8))
-    if top==None:
-        sns.barplot(y=df[col].value_counts(normalize=True), x=df[col].value_counts(normalize=True).index, data=df);
+    
+    if on_x:
+        if top==None:
+            ax = sns.barplot(y=df[col].value_counts(normalize=True), x=df[col].value_counts(normalize=True).index, data=df);
+        else:
+            ax = sns.barplot(y=df[col].value_counts(normalize=True)[:top], x=df[col].value_counts(normalize=True).index[:top], data=df);
     else:
-        sns.barplot(y=df[col].value_counts(normalize=True)[:top], x=df[col].value_counts(normalize=True).index[:top], data=df);
+        if top==None:
+            ax = sns.barplot(x=df[col].value_counts(normalize=True), y=df[col].value_counts(normalize=True).index, data=df);
+        else:
+            ax = sns.barplot(x=df[col].value_counts(normalize=True)[:top], y=df[col].value_counts(normalize=True).index[:top], data=df);
+    
     if label_col==None:
         label_col=col
-        
+    if show_val:
+        show_values(ax, space=0.01)
+    
     plt.title('Counting in {0}'.format(label_col), fontsize=20);
-    plt.ylabel('% of {0}'.format(label_col), fontsize=15);
-    plt.xlabel('{0}'.format(label_col), fontsize=15);
+    if on_x:   
+        plt.ylabel('% of {0}'.format(label_col), fontsize=15);
+        plt.xlabel('{0}'.format(label_col), fontsize=15);
+    else:
+        plt.xlabel('% of {0}'.format(label_col), fontsize=15);
+        plt.ylabel('{0}'.format(label_col), fontsize=15);
     plt.show();
                             
                             
