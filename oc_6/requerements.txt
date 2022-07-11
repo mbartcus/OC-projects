@@ -1,0 +1,40 @@
+conda create -n oc6 python=3.9
+
+conda install jupyter
+conda install -c conda-forge jupyterlab
+conda install pandas
+conda install matplotlib
+conda install seaborn
+conda install -c conda-forge wordcloud
+pip install -U scikit-learn
+pip install streamlit
+
+conda install -c anaconda nltk 
+conda install -c conda-forge spacy
+pip install pandarallel
+
+
+
+
+conda install -c conda-forge lightgbm
+pip install imbalanced-learn
+
+conda install -c riipl-org shap
+conda install -c conda-forge lime 
+
+conda install -c conda-forge xgboost
+
+
+
+
+
+conda install -c conda-forge shapely
+pip install geopandas
+pip install squarify
+pip install yellowbrick
+
+
+
+
+pip install tensorflow-2.4.1-py3-none-any.whl
+conda install -c conda-forge keras

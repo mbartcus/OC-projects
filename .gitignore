@@ -7,3 +7,9 @@
 oc_3/.ipynb_checkpoints/Bartcus_Marius_1_notebook_052022-checkpoint.ipynb
 oc_4/.ipynb_checkpoints/Bartcus_Marius_1_notebook_052022-checkpoint.ipynb
 *.pckl
+oc_6/.ipynb
+*.ipynb
+oc_6/.ipynb_checkpoints/.ipynb-checkpoint
+oc_6/data/processed/reviews.pkl.gz
+*.json
+*.jpg
