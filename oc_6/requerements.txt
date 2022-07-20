@@ -12,6 +12,8 @@ pip install streamlit
 conda install -c anaconda nltk 
 conda install -c conda-forge spacy
 pip install pandarallel
+conda config --append channels conda-forge
+pip install python-dotenv
 
 
 

@@ -13,3 +13,4 @@ oc_6/.ipynb_checkpoints/.ipynb-checkpoint
 oc_6/data/processed/reviews.pkl.gz
 *.json
 *.jpg
+oc_6/.env
