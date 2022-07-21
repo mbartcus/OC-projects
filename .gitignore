@@ -7,10 +7,14 @@
 oc_3/.ipynb_checkpoints/Bartcus_Marius_1_notebook_052022-checkpoint.ipynb
 oc_4/.ipynb_checkpoints/Bartcus_Marius_1_notebook_052022-checkpoint.ipynb
 *.pckl
-oc_6/.ipynb
-*.ipynb
 oc_6/.ipynb_checkpoints/.ipynb-checkpoint
 oc_6/data/processed/reviews.pkl.gz
 *.json
 *.jpg
 oc_6/.env
+oc_6/.ipynb
+oc_5/.ipynb_checkpoints/BARTCUS_Marius3_notebook_simulation_062022-checkpoint.ipynb
+oc_5/_2_notebook-essais_062022-Copy1.ipynb
+oc_5/.ipynb_checkpoints/_2_notebook-essais_062022-Copy1-checkpoint.ipynb
+oc_6/.ipynb_checkpoints/Bartcus_Marius_1_csv_062022-checkpoint.ipynb
+oc_6/.ipynb_checkpoints/Bartcus_Marius_2_notebook_-checkpoint.ipynb
