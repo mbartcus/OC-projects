@@ -14,6 +14,9 @@ conda install -c conda-forge spacy
 pip install pandarallel
 conda config --append channels conda-forge
 pip install python-dotenv
+conda install -c conda-forge gensim
+conda install -c conda-forge pyldavis
+conda install -c conda-forge opencv
 
 
 
