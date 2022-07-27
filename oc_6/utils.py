@@ -631,25 +631,30 @@ def make_confusion_matrix(cf,
     if ax is None:
         plt.figure(figsize=figsize)
 
-    sns.heatmap(cf,annot=box_labels,fmt="",cmap=cmap,cbar=cbar,xticklabels=categories,yticklabels=categories, ax=ax)
+    sns.heatmap(cf,annot=box_labels,fmt="",cmap=cmap,cbar=cbar,xticklabels=categories,yticklabels=categories, ax=ax, annot_kws={"size": 18})
     if ax is None:
         if xyplotlabels:
-            plt.ylabel('True label')
-            plt.xlabel('Predicted label' + stats_text)
+            plt.ylabel('True label', size=15)
+            plt.xlabel('Predicted label' + stats_text, size=15)
         else:
-            plt.xlabel(stats_text)
+            plt.xlabel(stats_text, size=15)
 
         if title:
-            plt.title(title)
+            plt.title(title, size=20)
+        plt.xticks(fontsize=15)
+        plt.yticks(fontsize=15)
     else:
         if xyplotlabels:
-            ax.set_ylabel('True label')
-            ax.set_xlabel('Predicted label' + stats_text)
+            ax.set_ylabel('True label', size=15)
+            ax.set_xlabel('Predicted label' + stats_text, size=15)
         else:
-            ax.set_xlabel(stats_text)
+            ax.set_xlabel(stats_text, size=15)
 
         if title:
-            ax.set_title(title)
+            ax.set_title(title, size=20)
+            
+        ax.set_xticklabels(ax.get_xticks(), size=15)
+        ax.set_yticklabels(ax.get_yticks(), size=15)
 
 
 

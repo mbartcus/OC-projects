@@ -17,26 +17,7 @@ pip install python-dotenv
 conda install -c conda-forge gensim
 conda install -c conda-forge pyldavis
 conda install -c conda-forge opencv
-
-
-
-
-conda install -c conda-forge lightgbm
-pip install imbalanced-learn
-
-conda install -c riipl-org shap
-conda install -c conda-forge lime 
-
-conda install -c conda-forge xgboost
-
-
-
-
-
-conda install -c conda-forge shapely
-pip install geopandas
-pip install squarify
-pip install yellowbrick
+conda install -c districtdatalabs yellowbrick 
 
 
 
