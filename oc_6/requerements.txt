@@ -4,6 +4,7 @@ conda install jupyter
 conda install -c conda-forge jupyterlab
 conda install pandas
 conda install matplotlib
+
 conda install seaborn
 conda install -c conda-forge wordcloud
 pip install -U scikit-learn
@@ -18,9 +19,9 @@ conda install -c conda-forge gensim
 conda install -c conda-forge pyldavis
 conda install -c conda-forge opencv
 conda install -c districtdatalabs yellowbrick 
+pip install gql 
+pip install requests-toolbelt
 
 
 
-
-pip install tensorflow-2.4.1-py3-none-any.whl
 conda install -c conda-forge keras

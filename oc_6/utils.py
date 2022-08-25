@@ -309,6 +309,70 @@ def eta_squared(df, var1, var2):
     return SCE/SCT
 
 
+def reduce_dataframe_memory_usage(df, high_precision = False):
+    """
+    Iterate through all the columns of a dataframe and modify the data type to
+    reduce memory usage.
+    Args:
+        df (pd.DataFrame): dataframe to reduce memory usage.
+        high_precision (bool): If True, use 64-bit floats instead of 32-bit
+    Returns:
+        pd.DataFrame: dataframe with reduced memory usage.
+    """
+    start_mem = round(df.memory_usage().sum() / 1024 ** 2, 2)
+    print("Memory usage of dataframe is {0} MB".format(start_mem)) #logging.info
+
+    # Iterate through columns
+    for col in df.columns:
+        if df[col].dtype == "object":
+            # "object" dtype
+            if df[col].nunique() < max(100, df.shape[0] / 100):
+                # If number of unique values is less than max(100, 1%)
+                df[col] = df[col].astype("category")
+            else:
+                # If number of unique values is greater than max(100, 1%)
+                df[col] = df[col].astype("string")
+
+        elif str(df[col].dtype)[:3] == "int":
+            # "int" dtype
+            c_min = df[col].min()
+            c_max = df[col].max()
+            if c_min > np.iinfo(np.uint8).min and c_max < np.iinfo(np.uint8).max:
+                df[col] = df[col].astype("UInt8")
+            elif c_min > np.iinfo(np.int8).min and c_max < np.iinfo(np.int8).max:
+                df[col] = df[col].astype("Int8")
+            elif c_min > np.iinfo(np.uint16).min and c_max < np.iinfo(np.uint16).max:
+                df[col] = df[col].astype("UInt16")
+            elif c_min > np.iinfo(np.int16).min and c_max < np.iinfo(np.int16).max:
+                df[col] = df[col].astype("Int16")
+            elif c_min > np.iinfo(np.uint32).min and c_max < np.iinfo(np.uint32).max:
+                df[col] = df[col].astype("UInt32")
+            elif c_min > np.iinfo(np.int32).min and c_max < np.iinfo(np.int32).max:
+                df[col] = df[col].astype("Int32")
+            elif c_min > np.iinfo(np.uint64).min and c_max < np.iinfo(np.uint64).max:
+                df[col] = df[col].astype("UInt64")
+            else:
+                df[col] = df[col].astype("Int64")
+
+        elif str(df[col].dtype)[:5] == "float":
+            # "float" dtype
+            c_min = df[col].min()
+            c_max = df[col].max()
+            if (
+                not high_precision
+                and c_min > np.finfo(np.float32).min
+                and c_max < np.finfo(np.float32).max
+            ):
+                df[col] = df[col].astype("float32")
+            else:
+                df[col] = df[col].astype("float64")
+
+    end_mem = round(df.memory_usage().sum() / 1024 ** 2, 2)
+    print("Memory usage after optimization is {0} MB".format(end_mem)) #logging.info
+    if start_mem > 0:
+        print("Decreased by {0} %%".format(round(100 * (start_mem - end_mem) / start_mem))) # logging.info
+
+    return df
 
 
 def show_values(axs, orient="v", space=.01):
@@ -757,3 +821,105 @@ def load_model(fname = 'finalized_model.sav'):
     loaded_model = pickle.load(open(filename, 'rb'))
     result = loaded_model.score(X_test, Y_test)
     return result
+
+
+
+# In order to get the optimal number of topics we get the perplexity and coherence scores for the LDA model for diffenrent number of topics
+# https://towardsdatascience.com/evaluate-topic-model-in-python-latent-dirichlet-allocation-lda-7d57484bb5d0
+def get_nr_topics():
+    #TODO
+    if (not os.path.exists('results/model_results_ab.csv')):
+        # Topics range
+        min_topics = 2
+        max_topics = 20
+        step_size = 1
+        topics_range = range(min_topics, max_topics, step_size)
+
+        # Alpha parameter
+        alpha = list(np.arange(0.01, 1, 0.3))
+        alpha.append('symmetric')
+        alpha.append('asymmetric')
+
+        # Beta parameter
+        beta = list(np.arange(0.01, 1, 0.3))
+        beta.append('symmetric')
+
+
+        model_results = {'Topics': [],
+                         'Alpha': [],
+                         'Beta': [],
+                         'Coherence': []
+                        }
+
+        with timer("computing the number of topics"):
+            #computing the number of topics - done in 16042s
+            for k in topics_range:
+
+                # iterate through alpha values
+                for a in alpha:
+                    # iterare through beta values
+                    for b in beta:
+                        # Build the LDA model
+                        lda_model = LdaMulticore(
+                                corpus=corpus,
+                                id2word=dictionary,
+                                num_topics=k,
+                                random_state=100,
+                                chunksize=100,
+                                passes=10,
+                                alpha=a,
+                                eta=b
+                        )
+                        # get the coherence score for the given parameters
+                        coherence_model_lda = CoherenceModel(model=lda_model, texts=docs, dictionary=dictionary, coherence='c_v')
+                        cv = coherence_model_lda.get_coherence() 
+
+                        # Save the model results
+                        model_results['Topics'].append(k)
+                        model_results['Alpha'].append(a)
+                        model_results['Beta'].append(b)
+                        model_results['Coherence'].append(cv)   
+                        print('a:{0} b:{1} k:{2} coherence:{3}'.format(a, b, k, cv))
+    model_results = pd.DataFrame(model_results)
+    model_results.to_csv('results/model_results_ab.csv')  
+    
+    
+    
+    
+    
+    
+    a = model_results[model_results.Coherence == model_results.Coherence.max()].Alpha.iloc[0]
+    b = model_results[model_results.Coherence == model_results.Coherence.max()].Beta.iloc[0]
+
+    plt.figure(figsize=(15, 10))
+    axes = sns.lineplot(data=model_results[(model_results.Alpha==a)&(model_results.Beta==b)], x="Topics", y="Coherence", marker="o")
+    axes.set_xticks(model_results[(model_results.Alpha==a)&(model_results.Beta==b)].Topics);
+    # use
+    axes.set_xticklabels(axes.get_xticks(), size=15)
+    axes.set_yticklabels(axes.get_yticks(), size=15)
+    plt.title('Coherence for LDA Model',fontsize=25)
+    plt.xlabel('Number of Topics',fontsize=20)
+    plt.ylabel('Coherence score',fontsize=20)
+    
+    
+def plot_top_words(model, feature_names, n_top_words, n_topics, title):
+    n_cols = 5
+    n_lines = int(np.ceil(min(n_topics, model.n_components) / n_cols))
+    fig, axes = plt.subplots(n_lines, n_cols, figsize=(30, 10), sharex=True)
+    axes = axes.flatten()
+    for topic_idx, topic in enumerate(model.components_[0:n_topics]):
+        top_features_ind = topic.argsort()[: -n_top_words - 1 : -1]
+        top_features = [feature_names[i] for i in top_features_ind]
+        weights = topic[top_features_ind]
+
+        ax = axes[topic_idx]
+        ax.barh(top_features, weights, height=0.7)
+        ax.set_title(f"Topic {topic_idx +1}", fontdict={"fontsize": 20})
+        ax.invert_yaxis()
+        ax.tick_params(axis="both", which="major", labelsize=15)
+        for i in "top right left".split():
+            ax.spines[i].set_visible(False)
+        fig.suptitle(title, fontsize=30)
+
+    plt.subplots_adjust(top=0.90, bottom=0.05, wspace=0.90, hspace=0.3)
+    plt.show()
