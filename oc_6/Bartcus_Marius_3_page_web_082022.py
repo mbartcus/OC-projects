@@ -108,7 +108,7 @@ st.header('Topic analysis')
 
 
 f_topics = plot_top_words(
-    lda, list(df_nlp_review.columns), no_top_words, n_topics, "Topics in LSA model" # (Frobenius norm)
+    lda, list(df_nlp_review.columns), no_top_words, n_topics, "Topics in LDA model" # (Frobenius norm)
 )
 st.pyplot(f_topics)
 
