@@ -1,17 +1,5 @@
 import streamlit as st
-import time
-import numpy as np
-import pandas as pd
-from utils import *
-import seaborn as sns
-import os
-
 import requests
-
-
-#response = requests.get("http://127.0.0.1:5000/")
-#print(response.json())
-
 
 
 st.title('Sentiment analyse')

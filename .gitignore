@@ -39,3 +39,17 @@ oc_7/.ipynb_checkpoints/Bartcus_Marius_2_notebook_062022-checkpoint.ipynb
 oc_7/Bartcus_Marius_2_notebook_062022.ipynb
 oc_4/Bartcus_Marius_1_notebook_052022.ipynb
 oc_4/Bartcus_Marius_1_notebook_052022.ipynb
+oc_8/*.png
+oc_7/img/xgb_cr.png
+oc_7/img/xgb_conf.png
+oc_7/img/lstm_cr.png
+oc_7/img/lstm_cm.png
+oc_7/img/img_data.png
+oc_7/img/bert_cr.png
+oc_7/img/bert_cm.png
+oc_7/img/avis_paradis.png
+*.h5
+oc_8/data/images/*/*/*/*.png
+oc_8/data/masks/*/*/*/*.png
+oc_8/data/masks/*
+oc_8/data/images/*
