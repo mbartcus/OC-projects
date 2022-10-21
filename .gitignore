@@ -53,3 +53,4 @@ oc_8/data/images/*/*/*/*.png
 oc_8/data/masks/*/*/*/*.png
 oc_8/data/masks/*
 oc_8/data/images/*
+oc_8/P08_00_notebook_analyse.ipynb
