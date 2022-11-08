@@ -54,3 +54,12 @@ oc_8/data/masks/*/*/*/*.png
 oc_8/data/masks/*
 oc_8/data/images/*
 oc_8/P08_00_notebook_analyse.ipynb
+oc_8/.ipynb_checkpoints/Bartcus_Marius_1_notebook_102022-checkpoint.ipynb
+oc_8/.ipynb_checkpoints/P08_notebook_modelisation-checkpoint.ipynb
+oc_8/.ipynb_checkpoints/Bartcus_Marius_1_notebook_102022-checkpoint.ipynb
+*.txt
+oc_9/data/articles_embeddings.pickle
+oc_9/results/ratings.gzip
+oc_8/.ipynb_checkpoints/Bartcus_Marius_1_notebook_102022-checkpoint.ipynb
+oc_8/.ipynb_checkpoints/Bartcus_Marius_1_notebook_102022-checkpoint.ipynb
+oc_9/.ipynb_checkpoints/lab-checkpoint.ipynb
