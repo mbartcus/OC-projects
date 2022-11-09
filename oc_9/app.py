@@ -1,26 +1,15 @@
 ###to run the Flask server
 # FLASK_APP=Bartcus_Marius_API_092022.py flask run
 # https://sentimentanalyseapi.herokuapp.com/api?my_tweet=I+hate+you
-# http://127.0.0.1:5000/api?my_tweet=I+hate+you
+# http://127.0.0.1:5000/api?user_id=0
 ###
 import os
 from flask import Flask, request, render_template, jsonify
 import pandas as pd
-
+from surprise import dump
+import numpy as np
 
 app = Flask(__name__)
-
-
-def get_rating_user(ratings, user_id):
-    ratings_user = ratings[ratings.user_id!=user_id]
-    ratings_user = ratings_user.drop_duplicates(subset=['article_id'])
-    ratings_user.user_id = user_id
-    ratings_user = ratings_user.reset_index(drop=True)
-    return ratings_user
-
-def pred(usr, art):
-    return algo.predict(usr, art).est
-
 
 @app.before_first_request
 def load__model():
@@ -30,26 +19,96 @@ def load__model():
     """
 
     # 1. load the ratings dataset, algo - model used for collaborative filtering and the embg_data - used for content based
-    global algo, ratings #, embg_data
+    global algo, all_clicks_df, embg_data
 
     # 2. load the 2 data used for the recommandation systems
-    ratings = pd.read_parquet('results/ratings.gzip')
+    all_clicks_df = pd.read_parquet('results/usr_clicks.gzip')
+    embg_data = pd.read_parquet('results/embedding_proj.gzip')
 
     # 3. load the model for colalaborative fitlering
-    _, algo = dump.load('results/surprise_model.pkl')
+    _, algo = dump.load('results/surprise_model.pkl.gz')
 
-def predict(user_id):
+
+def get_ratings():
+    # compute how many times the user clicked an article
+    data = all_clicks_df.groupby(['user_id', 'click_article_id']).size().to_frame().reset_index()
+    data.rename(columns = {0:'rate'}, inplace = True)
+
+    # compute the total number of clicks per user
+    user_activity = all_clicks_df.groupby('user_id').size().to_frame().reset_index()
+    user_activity.rename(columns = {0:'user_clicks'}, inplace = True)
+
+    # compute the rating
+    ratings = pd.merge(data, user_activity,
+             how='left', on='user_id')
+    ratings['rating'] = ratings.rate / ratings.user_clicks
+    return ratings[['user_id', 'click_article_id', 'rating']]
+
+def get_rating_user(ratings, user_id):
+    ratings_user = ratings[ratings.user_id!=user_id]
+    ratings_user = ratings_user.drop_duplicates(subset=['click_article_id'])
+    ratings_user.user_id = user_id
+    ratings_user = ratings_user.reset_index(drop=True)
+    return ratings_user
+
+def pred(usr, art):
+    return algo.predict(usr, art).est
+
+def predict_fillterec(user_id):
     # Prediction:
+    ratings = get_ratings()
     ratings_user = get_rating_user(ratings, user_id)
-    rtigs = pd.Series(map(pred, ratings_user.user_id, ratings_user.article_id))
+    rtigs = pd.Series(map(pred, ratings_user.user_id, ratings_user.click_article_id))
     ratings_user = ratings_user.assign(rating = rtigs)
-    recomandations = ratings_user.sort_values("rating", ascending=False).head(5)[['article_id', 'rating']]
-    return recomandations.set_index('article_id')['rating'].to_dict()
+    recomandations = ratings_user.sort_values("rating", ascending=False).head(5)[['click_article_id', 'rating']]
+    return recomandations.set_index('click_article_id')['rating'].to_dict()
+
+
+from operator import itemgetter
+
+def find_top_n_indices(data, top=5):
+    indexed = enumerate(data)
+    sorted_data = sorted(indexed,
+                         key=itemgetter(1),
+                         reverse=True)
+    result = {}
+    for article, score in sorted_data[:top]:
+        result[article] = score
+    return result
+
+def recommendFromArticle(article_emb, embedding_articles, top=5):
+    '''
+    article_emb - the mean of the articles embedding the user clicked
+    embedding_articles - the articles the user did not clicked
+    '''
+    score = []
+    for i in range(0, len(embedding_articles)):
+        cos_sim = np.dot(article_emb, embedding_articles[i])/(np.linalg.norm(article_emb)*np.linalg.norm(embedding_articles[i]))
+        score.append(cos_sim)
+    _best_scores = find_top_n_indices(score, top)
+    return _best_scores
+
+def get_articles_user_clicked(all_article_ids, user_id):
+    articles_user_clicks = all_clicks_df[all_clicks_df.user_id == user_id].click_article_id
+    usr_click = embg_data.query("article_id in @articles_user_clicks")
+    usr_not_click = embg_data.query("article_id not in @articles_user_clicks")
+
+    return usr_click.drop(columns=['article_id']).to_numpy(), usr_not_click.drop(columns=['article_id']).to_numpy()
+
+def predict_collaborative(user_id):
+    embedding_articles_user_clicked,  embedding_articles= get_articles_user_clicked(all_clicks_df, user_id)
+    article_emb = np.mean(embedding_articles_user_clicked, axis=0)
+    result = recommendFromArticle(article_emb, embedding_articles, top=5)
+    print(type(result))
+    return result
+
 
 # API
 @app.route("/api")
 def recommand():
-    user_id = [request.args.get("user_id")]
+    user_id = request.args.get("user_id")
+
+    recomandation_type = request.args.get("recommand")
 
     if not user_id:
         user_id = -1
@@ -57,22 +116,17 @@ def recommand():
         recomandations = {
             user_id: score,
         }
-    else:
-        recomandations = predict(user_id)
 
+    elif recomandation_type == 'filtering-recommandation':
+        recomandations = predict_fillterec(user_id)
+    elif recomandation_type == 'collaborative-recommandation':
+        recomandations = predict_collaborative(user_id)
+
+    print(recomandations)
+    for article, score in recomandations:
+        print(article, score)
 
     return jsonify(recomandations)
-
-
-# API TEST
-@app.route("/test")
-def test_api():
-    dictionnaire = {
-        'type': 'Prévision de température',
-        'valeurs': [24, 24, 25, 26, 27, 28],
-        'unite': "degrés Celcius"
-    }
-    return jsonify(dictionnaire)
 
 if __name__ == "__main__":
     app.run(debug==True)
