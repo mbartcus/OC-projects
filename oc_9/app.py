@@ -8,6 +8,7 @@ from flask import Flask, request, render_template, jsonify
 import pandas as pd
 from surprise import dump
 import numpy as np
+from sklearn.metrics.pairwise import cosine_similarity
 
 app = Flask(__name__)
 
@@ -81,10 +82,7 @@ def recommendFromArticle(article_emb, embedding_articles, top=5):
     article_emb - the mean of the articles embedding the user clicked
     embedding_articles - the articles the user did not clicked
     '''
-    score = []
-    for i in range(0, len(embedding_articles)):
-        cos_sim = np.dot(article_emb, embedding_articles[i])/(np.linalg.norm(article_emb)*np.linalg.norm(embedding_articles[i]))
-        score.append(cos_sim)
+    score = cosine_similarity(embedding_articles, article_emb)
     _best_scores = find_top_n_indices(score, top)
     return _best_scores
 
@@ -98,16 +96,17 @@ def get_articles_user_clicked(all_article_ids, user_id):
 def predict_collaborative(user_id):
     embedding_articles_user_clicked,  embedding_articles= get_articles_user_clicked(all_clicks_df, user_id)
     article_emb = np.mean(embedding_articles_user_clicked, axis=0)
-    result = recommendFromArticle(article_emb, embedding_articles, top=5)
-    print(type(result))
-    return result
+    result = recommendFromArticle(article_emb.reshape(1, -1), embedding_articles, top=5)
+    score = {}
+    for article in result:
+        score[article] = float(result[article][0])
+    return score
 
 
 # API
 @app.route("/api")
 def recommand():
-    user_id = request.args.get("user_id")
-
+    user_id = request.args.get("user_id") # it is a string but we need an int
     recomandation_type = request.args.get("recommand")
 
     if not user_id:
@@ -118,13 +117,9 @@ def recommand():
         }
 
     elif recomandation_type == 'filtering-recommandation':
-        recomandations = predict_fillterec(user_id)
+        recomandations = predict_fillterec(int(user_id))
     elif recomandation_type == 'collaborative-recommandation':
-        recomandations = predict_collaborative(user_id)
-
-    print(recomandations)
-    for article, score in recomandations:
-        print(article, score)
+        recomandations = predict_collaborative(int(user_id))
 
     return jsonify(recomandations)
 

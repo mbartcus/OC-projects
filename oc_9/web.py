@@ -11,7 +11,7 @@ st.subheader('Filtering Recommandation System')
 #all_clicks_df = pd.read_parquet('results/usr_clicks.gzip')
 #users = all_clicks_df.user_id.unique()
 
-with st.form(key='recommandation_form', clear_on_submit=True):
+with st.form(key='recommandation_form', clear_on_submit=False):
     user_id = st.text_input('Select user')
 
     recommandation_type = st.selectbox(
