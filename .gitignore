@@ -60,3 +60,6 @@ oc_9/results/ratings.gzip
 oc_8/.ipynb_checkpoints/Bartcus_Marius_1_notebook_102022-checkpoint.ipynb
 oc_8/.ipynb_checkpoints/Bartcus_Marius_1_notebook_102022-checkpoint.ipynb
 oc_9/.ipynb_checkpoints/lab-checkpoint.ipynb
+*.pkl
+*.pckl
+*.gz
