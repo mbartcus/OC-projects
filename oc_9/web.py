@@ -28,7 +28,8 @@ if submit_button:
     with st.spinner('Wait for it...'):
         st.info(f'Your user is :  {user_id}')
 	#https://oc9.azurewebsites.net/api/httptriggerrecom
-        article_score = requests.get(" http://localhost:7071/api/HttpTriggerRecom", params={"user_id": user_id, "recommand": recommandation_type}).json()
+	#http://localhost:7071/api/HttpTriggerRecom
+        article_score = requests.get("https://oc9.azurewebsites.net/api/httptriggerrecom", params={"user_id": user_id, "recommand": recommandation_type}).json()
         st.text(type(article_score))
         st.json(article_score)
         #for i, article in enumerate(article_score):
