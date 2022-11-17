@@ -10,7 +10,6 @@ from sklearn.metrics.pairwise import cosine_similarity
 from io import BytesIO
 from azure.storage.blob import   BlobServiceClient, BlobClient
 import os
-#import pickle
 import io
 
 def read_parquet_from_blob_to_pandas_df(connection_str, container, blob_path):
@@ -145,11 +144,20 @@ def main(req: func.HttpRequest, allclicksdf:bytes, embdata:bytes, smodel:bytes) 
     #logging.info('done pkl')
     #logging.info(algo)
 
-    all_clicks_df = pd.read_parquet(allclicksdf, engine = 'pyarrow')
+    blob_bytes = allclicksdf.read()
+    blob_to_read = BytesIO(blob_bytes)
+    all_clicks_df = pd.read_parquet(blob_to_read, engine = 'pyarrow')
     logging.info('all_clicks_df loaded')
-    embg_data = pd.read_parquet(embdata, engine = 'pyarrow')
+
+
+    blob_bytes = embdata.read()
+    blob_to_read = BytesIO(blob_bytes)
+    embg_data = pd.read_parquet(blob_to_read, engine = 'pyarrow')
     logging.info('embg_data loaded')
-    _, algo = dump.load(smodel)
+
+    blob_bytes = smodel.read()
+    blob_to_read = BytesIO(blob_bytes)
+    _, algo = dump.load(blob_to_read)
     logging.info('all data loaded')
     
     #_, algo = dump.load('results/surprise_model.pkl.gz')
