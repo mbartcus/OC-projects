@@ -7,11 +7,35 @@ import pandas as pd
 from surprise import dump
 import numpy as np
 from sklearn.metrics.pairwise import cosine_similarity
-from io import BytesIO
+from io import BytesIO, BufferedReader
 from azure.storage.blob import   BlobServiceClient, BlobClient
 import pickle
-import pyarrow as pa
-import pyarrow.parquet as pq
+#import pyarrow as pa
+#import pyarrow.parquet as pq
+import os
+
+def read_parquet_from_blob_to_pandas_df(connection_str, container, blob_path):
+    blob_service_client = BlobServiceClient.from_connection_string(connection_str)
+    blob_client = blob_service_client.get_blob_client(container = container, blob = blob_path)
+    stream_downloader = blob_client.download_blob()
+    stream = BytesIO()
+    stream_downloader.readinto(stream)
+    df = pd.read_parquet(stream, engine = 'pyarrow')
+    
+    return df
+
+def get_weights_blob(connection_str, container, blob_path):
+    blob_client = BlobClient.from_connection_string(
+        connection_str, container, blob_path
+    )
+    downloader = blob_client.download_blob(0)
+
+    # Load to pickle
+    b = downloader.readall()
+    weights = pickle.loads(b)
+
+    return weights
+
 
 def get_ratings():
     # compute how many times the user clicked an article
@@ -38,7 +62,8 @@ def get_rating_user(ratings, user_id):
 def pred(usr, art):
     return algo.predict(usr, art).est
 
-def predict_fillterec(user_id):
+
+def predict_fillterec(user_id): 
     # Prediction:
     ratings = get_ratings()
     ratings_user = get_rating_user(ratings, user_id)
@@ -86,37 +111,45 @@ def predict_collaborative(user_id):
 
 ##############################################################################################
 
-def main(req: func.HttpRequest, allclicksdf:bytes, embdata:bytes, smodel:bytes) -> func.HttpResponse:
-    logging.info(f'Python HTTP trigger function processed a request. clickblob: {len(allclicksdf)} bytes, embdata: {len(embdata)} bytes, surprise model: {len(smodel)} bytes')
+def main(req: func.HttpRequest) -> func.HttpResponse:
     # 1. load the ratings dataset, algo - model used for collaborative filtering and the embg_data - used for content based
     global algo, all_clicks_df, embg_data
 
-    #blob_to_read = BytesIO(smodel).read()
-    #blob_to_read.seek(0)
-    #logging.info(type(blob_to_read))
-    #algo = pickle.loads(blob_to_read)
-    #logging.info('algo loaded')
-    #logging.info('all data loaded')
+    connect_str = os.environ['AzureWebJobsStorage']
+    container = 'oc9'
 
 
+    blob_path = 'usr_clicks.gzip'
+    all_clicks_df = read_parquet_from_blob_to_pandas_df(connect_str, container, blob_path)
+    
+
+    blob_path = 'embedding_proj.gzip'
+    embg_data = read_parquet_from_blob_to_pandas_df(connect_str, container, blob_path)
+    
+
+    #blob_path='surprise_modelp4.pkl.gz'
+    #algo = get_weights_blob(connect_str, container, blob_path)
+    
+
+    '''
     reader = pa.BufferReader(allclicksdf)
     reader.seek(0)
     table = pq.read_table(reader)
     all_clicks_df = table.to_pandas()  # This results in a pandas.DataFrame
     reader.close()
-
+    
     reader = pa.BufferReader(embdata)
     reader.seek(0)
     table = pq.read_table(reader)
     embg_data = table.to_pandas()  # This results in a pandas.DataFrame
     reader.close()
+    '''
 
     #########################################################################################
     
     user_id = req.params.get("user_id") # it is a string but we need an int
+    '''
     recomandation_type = req.params.get("recommand")
-
-    logging.info('1. user_id: {0} and recommandation: {1} declared '.format(user_id, recomandation_type))
     
     if not user_id:
         article_id = -1
@@ -128,7 +161,8 @@ def main(req: func.HttpRequest, allclicksdf:bytes, embdata:bytes, smodel:bytes) 
     elif recomandation_type == 'filtering-recommandation':
         recomandations = predict_fillterec(int(user_id))
     elif recomandation_type == 'collaborative-recommandation':
-        recomandations = predict_collaborative(int(user_id))
+    '''
+    recomandations = predict_collaborative(int(user_id))
 
     result = json.dumps(recomandations) 
 
