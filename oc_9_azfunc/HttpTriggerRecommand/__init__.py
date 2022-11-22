@@ -49,20 +49,16 @@ def predict_collaborative(user_id):
 
 def main(req: func.HttpRequest) -> func.HttpResponse:
     # 1. load the ratings dataset, algo - model used for collaborative filtering and the embg_data - used for content based
-    global algo, all_clicks_df, embg_data
+    global all_clicks_df, embg_data
 
     connect_str = os.environ['AzureWebJobsStorage']
     container = 'oc9'
-    
+
     blob_path = 'usr_clicks.gzip'
     all_clicks_df = blb.read_parquet_from_blob_to_pandas_df(connect_str, container, blob_path)
     
     blob_path = 'embedding_proj.gzip'
     embg_data = blb.read_parquet_from_blob_to_pandas_df(connect_str, container, blob_path)
-    
-
-    #blob_path='surprise_modelp4.pkl.gz'
-    #algo = get_weights_blob(connect_str, container, blob_path)
     
     '''
     reader = pa.BufferReader(allclicksdf)
@@ -77,7 +73,6 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
     embg_data = table.to_pandas()  # This results in a pandas.DataFrame
     reader.close()
     '''
-
     #########################################################################################
     
     user_id = req.params.get("user_id") # it is a string but we need an int

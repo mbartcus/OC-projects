@@ -42,7 +42,7 @@ def predict_fillterec(user_id):
 
 
 def main(req: func.HttpRequest) -> func.HttpResponse:
-    global algo, all_clicks_df, embg_data
+    global algo, all_clicks_df
 
     connect_str = os.environ['AzureWebJobsStorage']
     container = 'oc9'
@@ -50,7 +50,6 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
     blob_path = 'usr_clicks.gzip'
     all_clicks_df = blb.read_parquet_from_blob_to_pandas_df(connect_str, container, blob_path)
     
-
     blob_path='surprise_modelp4.pkl.gz'
     algo = blb.get_weights_blob(connect_str, container, blob_path)
 
