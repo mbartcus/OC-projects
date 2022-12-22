@@ -1,37 +1,28 @@
 import tensorflow as tf
 from tensorflow.keras.utils import Sequence
 from tensorflow.python.keras import backend as K
-import imgaug as ia
-import imgaug.augmenters as iaa
-from imgaug.augmentables.segmaps import SegmentationMapsOnImage
+#import imgaug as ia
+#import imgaug.augmenters as iaa
+#from imgaug.augmentables.segmaps import SegmentationMapsOnImage
 import numpy as np
 import cv2
+import pandas as pd
+#from PIL import Image
+import albumentations as aug
 
 class DataGenerator(Sequence):
 
-    cats = {
-        'void': [0, 1, 2, 3, 4, 5, 6],
-        'flat': [7, 8, 9, 10],
-        'construction': [11, 12, 13, 14, 15, 16],
-        'object': [17, 18, 19, 20],
-        'nature': [21, 22],
-        'sky': [23],
-        'human': [24, 25],
-        'vehicle': [26, 27, 28, 29, 30, 31, 32, 33, -1]
+    cats_replace = {0: [0, 1, 2, 3, 4, 5, 6],
+     1: [7, 8, 9, 10],
+     2: [11, 12, 13, 14, 15, 16],
+     3: [17, 18, 19, 20],
+     4: [21, 22],
+     5: [23],
+     6: [24, 25],
+     7: [26, 27, 28, 29, 30, 31, 32, 33, -1]
     }
 
-    cats_id = {
-        'void': (0),
-        'flat': (1),
-        'construction': (2),
-        'object': (3),
-        'nature': (4),
-        'sky': (5),
-        'human':(6),
-        'vehicle': (7)
-    }
-
-    def __init__(self, images_path, labels_path, batch_size, dim, shuffle=True, augmentation=False):
+    def __init__(self, images_path, labels_path, batch_size, dim=(256,128), shuffle=True, augmentation=False):
         self.images_path = images_path  # liste contenant les chemins des images
         self.labels_path = labels_path # liste contenant les chemins des masques
         self.batch_size = batch_size
@@ -58,31 +49,39 @@ class DataGenerator(Sequence):
         batch_y = [self.labels_path[k] for k in indexes]
 
         X, y = self.__data_generation(batch_x, batch_y)
+        
 
         return (X, y)
 
     def __data_generation(self, batch_x, batch_y):
-
+        
+        #X = np.array([np.array(Image.open(image_name).resize(self.dim, Image.Resampling.LANCZOS)) for image_name in batch_x])
+                
+        #y = np.array([np.array(Image.fromarray(self._convert_mask(np.array(Image.open(mask_name))).astype('uint8'), 'RGB').resize(self.dim))     for mask_name in batch_y])
+        
         X = np.array([cv2.resize(cv2.cvtColor(cv2.imread(path_X), cv2.COLOR_BGR2RGB), self.dim) for path_X in batch_x])
         y = np.array([cv2.resize(self._convert_mask(cv2.imread(path_y,0)), self.dim) for path_y in batch_y])
-
+        
+        print(y.shape)
+        
         if self.augmentation:
             X, y = self._augment_data(X,y)
 
         return self._transform_data(X,y)
 
-    def _convert_mask(self,img):
-        img = np.squeeze(img)
-        mask = np.zeros((img.shape[0], img.shape[1], 8), dtype='uint8')
-
-        for i in range(-1, 34):
-            for cat in self.cats:
-                if i in self.cats[cat]:
-                    mask[:,:,self.cats_id[cat]] = np.logical_or(mask[:,:,self.cats_id[cat]],(img==i))
-                    break
-
-        return np.array(mask, dtype='uint8')
-
+    def _convert_mask(self, ids_img):
+        mask_labelids = pd.DataFrame(ids_img)
+        for new_value, old_value in self.cats_replace.items():
+            mask_labelids = mask_labelids.replace(old_value, new_value);
+        mask_labelids = mask_labelids.to_numpy()
+        
+        clc = 8
+        msk = np.zeros((mask_labelids.shape[0],mask_labelids.shape[1],clc))
+        for li in np.unique(mask_labelids):
+            msk[:,:,li] = np.logical_or(msk[:,:,li],(mask_labelids==li))
+        #print(np.array(msk, dtype='uint8').shape)
+        return np.array(msk, dtype='uint8')
+        
 
     def _augment_data(self, X, y):
         seq = iaa.Sequential([
@@ -125,6 +124,9 @@ class DataGenerator(Sequence):
 
     def _transform_data(self,X,y):
         if len(y.shape) == 3:
+            print('1')
             y = np.expand_dims(y, axis = 3)
+            print(y.shape)
         X = X /255.
+        print('fin')
         return np.array(X, dtype='uint8'), y
