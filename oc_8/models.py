@@ -7,6 +7,10 @@ from tensorflow.keras.metrics import MeanIoU, OneHotMeanIoU
 import tensorflow as tf
 import os
 import time
+import pandas as pd
+import json
+from keras.models import load_model
+import utils
 
 def conv_block(input, num_filters):
     x = Conv2D(num_filters, 3, padding="same")(input)
@@ -239,6 +243,8 @@ def DilatedSpatialPyramidPooling(dspp_input):
 
 
 
+        
+
 def train_model(model, model_name, loss_function, data_train, data_val, nbr_epochs = 50, learning_rate = 1e-5, patience = 14, monitor_val = 'val_mean_iou', augmented=False, NB_CLASSES=8):
     
     checkpoint_path = 'saved/checkpoint/'
@@ -255,6 +261,11 @@ def train_model(model, model_name, loss_function, data_train, data_val, nbr_epoc
     history_path_file = history_path + model_name + '_history.json'
     
     if os.path.exists(model_path):
+        
+        if os.path.exists(models_path + 'train_times.json'):
+            with open(models_path + 'train_times.json', 'r') as f:
+                train_times = json.load(f)
+        
         if loss_function == "categorical_crossentropy":
             model = load_model(model_path)
         else:
@@ -268,6 +279,8 @@ def train_model(model, model_name, loss_function, data_train, data_val, nbr_epoc
         hist_df = pd.DataFrame.from_dict(history)
 
     else:
+        train_times = {}
+        
         start_train = time.time()
 
         # compile
@@ -305,7 +318,9 @@ def train_model(model, model_name, loss_function, data_train, data_val, nbr_epoc
     return model, hist_df, training_time
 
 
-def predict_model(model, model_name, loss_type, training_time, show_pred=False):
+def predict_model(model, data_val, model_name, loss_type, training_time, show_pred=False):
+    synthese = {}
+    
     loss_score, mean_iou_score = model.evaluate(data_val)
     print("Pour le meilleur modèle on obtient :")
     print("mean_iou :", mean_iou_score)
@@ -327,6 +342,7 @@ def predict_model(model, model_name, loss_type, training_time, show_pred=False):
             plt.imshow(y_pred_argmax[index], alpha = 0.4)
             plt.show()
 
-    synthese[model_name] = helpers.add_model_in_synthese(loss_type, loss_score, mean_iou_score, training_time, predict_time)
+    synthese[model_name] = utils.add_model_in_synthese(loss_type, loss_score, mean_iou_score, training_time, predict_time)
 
     return y_pred_argmax
+
