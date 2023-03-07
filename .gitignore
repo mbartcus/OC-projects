@@ -63,3 +63,4 @@ oc_9/.ipynb_checkpoints/lab-checkpoint.ipynb
 *.pkl
 *.pckl
 *.gz
+oc_10/.env

@@ -1,4 +1,4 @@
-#!/Users/bartcus/Documents/GitHub/OC-projects/oc_10/venv/bin/python3
+#!/Users/bartcus/Documents/GitHub/OC-projects/oc_10/venv/bin/python3.10
 # -*- coding: utf-8 -*-
 import re
 import sys
