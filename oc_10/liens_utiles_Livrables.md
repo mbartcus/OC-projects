@@ -1,10 +1,8 @@
-# Projet 8
+# Projet 10
 
 1. github BookFlightBot
 https://github.com/mbartcus/BookFlightBot
-2. github API
-https://github.com/mbartcus/api-oc8-img-seg
-3. API - GOOGLE CLOUD RUN
-https://autcar-img-dyu56zxquq-uc.a.run.app/api
-4. webapp - APP ENGINE Google Cloud
-https://view-oc8.uc.r.appspot.com
+2. github scripts
+https://github.com/mbartcus/OC-projects/blob/main/oc_10/Bartcus_Marius_3_scripts_022023.ipynb
+3. Azure Web App
+https://botflytht.azurewebsites.net
