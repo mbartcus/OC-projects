@@ -1,0 +1,815 @@
+2023-03-09 08:46:26,086 - custom_logger - INFO - My Data Initialized
+2023-03-09 08:49:03,321 - custom_logger - INFO - My Data Initialized
+2023-03-09 08:51:51,538 - custom_logger - INFO - My Data Initialized
+2023-03-09 08:54:00,984 - custom_logger - INFO - My Data Initialized
+2023-03-09 08:54:02,274 - custom_logger - INFO - Data loaded.
+2023-03-09 08:58:43,237 - custom_logger - INFO - My Data Initialized
+2023-03-09 08:58:45,085 - custom_logger - INFO - Data loaded.
+2023-03-09 08:58:55,686 - custom_logger - INFO - Your selected dataframe has 5 columns.
+There are 1 columns that have missing values.
+2023-03-09 09:39:29,364 - custom_logger - INFO - My Data Initialized
+2023-03-09 09:42:50,689 - custom_logger - INFO - My Data Initialized
+2023-03-09 09:44:01,597 - custom_logger - INFO - Data loaded.
+2023-03-09 09:47:32,714 - custom_logger - INFO - Your selected dataframe has 122 columns.
+There are 67 columns that have missing values.
+2023-03-09 09:50:28,656 - custom_logger - INFO - My Data Initialized
+2023-03-09 09:50:31,569 - custom_logger - INFO - Data loaded.
+2023-03-09 09:50:37,339 - custom_logger - INFO - Your selected dataframe has 122 columns.
+There are 67 columns that have missing values.
+2023-03-09 10:07:41,402 - custom_logger - INFO - My Data Initialized
+2023-03-09 10:07:44,923 - custom_logger - INFO - Data loaded.
+2023-03-09 10:07:47,484 - custom_logger - INFO - Your selected dataframe has 122 columns.
+There are 67 columns that have missing values.
+2023-03-09 10:27:29,476 - custom_logger - INFO - My Data Initialized
+2023-03-09 10:27:31,345 - custom_logger - INFO - Data loaded.
+2023-03-09 10:27:32,112 - custom_logger - INFO - Your selected dataframe has 122 columns.
+There are 67 columns that have missing values.
+2023-03-09 11:33:25,037 - custom_logger - INFO - My Data Initialized
+2023-03-09 11:33:25,037 - custom_logger - INFO - My Data Initialized
+2023-03-09 11:33:45,453 - custom_logger - INFO - Data loaded.
+2023-03-09 11:33:45,453 - custom_logger - INFO - Data loaded.
+2023-03-09 11:34:26,466 - custom_logger - INFO - Data loaded.
+2023-03-09 11:34:26,466 - custom_logger - INFO - Data loaded.
+2023-03-09 11:36:02,769 - custom_logger - INFO - Your selected dataframe has 121 columns.
+There are 64 columns that have missing values.
+2023-03-09 11:36:02,769 - custom_logger - INFO - Your selected dataframe has 121 columns.
+There are 64 columns that have missing values.
+2023-03-09 11:40:41,121 - custom_logger - INFO - My Data Initialized
+2023-03-09 11:40:41,121 - custom_logger - INFO - My Data Initialized
+2023-03-09 11:40:41,121 - custom_logger - INFO - My Data Initialized
+2023-03-09 11:40:43,450 - custom_logger - INFO - Data loaded.
+2023-03-09 11:40:43,450 - custom_logger - INFO - Data loaded.
+2023-03-09 11:40:43,450 - custom_logger - INFO - Data loaded.
+2023-03-09 12:56:20,961 - custom_logger - INFO - My Data Initialized
+2023-03-09 12:56:23,888 - custom_logger - INFO - Data loaded.
+2023-03-09 12:56:24,647 - custom_logger - INFO - Your selected dataframe has 122 columns.
+There are 67 columns that have missing values.
+2023-03-09 12:56:30,241 - custom_logger - INFO - My Data Initialized
+2023-03-09 12:56:30,241 - custom_logger - INFO - My Data Initialized
+2023-03-09 12:56:31,542 - custom_logger - INFO - Data loaded.
+2023-03-09 12:56:31,542 - custom_logger - INFO - Data loaded.
+2023-03-09 12:56:34,351 - custom_logger - INFO - Your selected dataframe has 121 columns.
+There are 64 columns that have missing values.
+2023-03-09 12:56:34,351 - custom_logger - INFO - Your selected dataframe has 121 columns.
+There are 64 columns that have missing values.
+2023-03-09 13:05:00,175 - custom_logger - INFO - Your selected dataframe has 122 columns.
+There are 67 columns that have missing values.
+2023-03-09 13:05:00,175 - custom_logger - INFO - Your selected dataframe has 122 columns.
+There are 67 columns that have missing values.
+2023-03-09 13:05:00,175 - custom_logger - INFO - Your selected dataframe has 122 columns.
+There are 67 columns that have missing values.
+2023-03-09 13:05:00,175 - custom_logger - INFO - Your selected dataframe has 122 columns.
+There are 67 columns that have missing values.
+2023-03-09 13:05:00,175 - custom_logger - INFO - Your selected dataframe has 122 columns.
+There are 67 columns that have missing values.
+2023-03-09 13:05:00,175 - custom_logger - INFO - Your selected dataframe has 122 columns.
+There are 67 columns that have missing values.
+2023-03-09 13:06:12,148 - custom_logger - INFO - Your selected dataframe has 121 columns.
+There are 64 columns that have missing values.
+2023-03-09 13:06:12,148 - custom_logger - INFO - Your selected dataframe has 121 columns.
+There are 64 columns that have missing values.
+2023-03-09 13:06:12,148 - custom_logger - INFO - Your selected dataframe has 121 columns.
+There are 64 columns that have missing values.
+2023-03-09 13:06:12,148 - custom_logger - INFO - Your selected dataframe has 121 columns.
+There are 64 columns that have missing values.
+2023-03-09 13:06:12,148 - custom_logger - INFO - Your selected dataframe has 121 columns.
+There are 64 columns that have missing values.
+2023-03-09 13:06:12,148 - custom_logger - INFO - Your selected dataframe has 121 columns.
+There are 64 columns that have missing values.
+2023-03-09 13:21:40,207 - custom_logger - INFO - My Data Initialized
+2023-03-09 13:21:57,286 - custom_logger - INFO - My Data Initialized
+2023-03-09 13:21:57,286 - custom_logger - INFO - My Data Initialized
+2023-03-09 13:21:58,956 - custom_logger - INFO - Data loaded.
+2023-03-09 13:21:58,956 - custom_logger - INFO - Data loaded.
+2023-03-09 13:23:11,577 - custom_logger - INFO - My Data Initialized
+2023-03-09 13:23:11,577 - custom_logger - INFO - My Data Initialized
+2023-03-09 13:23:11,577 - custom_logger - INFO - My Data Initialized
+2023-03-09 13:23:16,116 - custom_logger - INFO - Data loaded.
+2023-03-09 13:23:16,116 - custom_logger - INFO - Data loaded.
+2023-03-09 13:23:16,116 - custom_logger - INFO - Data loaded.
+2023-03-09 13:23:20,679 - custom_logger - INFO - Your selected dataframe has 122 columns.
+There are 67 columns that have missing values.
+2023-03-09 13:23:20,679 - custom_logger - INFO - Your selected dataframe has 122 columns.
+There are 67 columns that have missing values.
+2023-03-09 13:23:20,679 - custom_logger - INFO - Your selected dataframe has 122 columns.
+There are 67 columns that have missing values.
+2023-03-09 13:41:28,627 - custom_logger - INFO - My Data Initialized
+2023-03-09 13:41:31,397 - custom_logger - INFO - Data loaded.
+2023-03-09 13:41:41,242 - custom_logger - INFO - My Data Initialized
+2023-03-09 13:41:41,242 - custom_logger - INFO - My Data Initialized
+2023-03-09 13:41:42,139 - custom_logger - INFO - Data loaded.
+2023-03-09 13:41:42,139 - custom_logger - INFO - Data loaded.
+2023-03-09 14:09:00,771 - custom_logger - INFO - My Data Initialized
+2023-03-09 14:09:03,466 - custom_logger - INFO - Data loaded.
+2023-03-09 14:09:10,583 - custom_logger - INFO - My Data Initialized
+2023-03-09 14:09:10,583 - custom_logger - INFO - My Data Initialized
+2023-03-09 14:09:11,944 - custom_logger - INFO - Data loaded.
+2023-03-09 14:09:11,944 - custom_logger - INFO - Data loaded.
+2023-03-09 14:12:21,942 - custom_logger - INFO - My Data Initialized
+2023-03-09 14:12:22,909 - custom_logger - INFO - Data loaded.
+2023-03-09 14:12:30,170 - custom_logger - INFO - My Data Initialized
+2023-03-09 14:12:30,170 - custom_logger - INFO - My Data Initialized
+2023-03-09 14:12:32,986 - custom_logger - INFO - Data loaded.
+2023-03-09 14:12:32,986 - custom_logger - INFO - Data loaded.
+2023-03-09 14:12:37,908 - custom_logger - INFO - My Data Initialized
+2023-03-09 14:12:37,908 - custom_logger - INFO - My Data Initialized
+2023-03-09 14:12:37,908 - custom_logger - INFO - My Data Initialized
+2023-03-09 14:12:39,335 - custom_logger - INFO - Data loaded.
+2023-03-09 14:12:39,335 - custom_logger - INFO - Data loaded.
+2023-03-09 14:12:39,335 - custom_logger - INFO - Data loaded.
+2023-03-09 14:17:13,009 - custom_logger - INFO - My Data Initialized
+2023-03-09 14:17:15,381 - custom_logger - INFO - Data loaded.
+2023-03-09 14:17:38,295 - custom_logger - INFO - My Data Initialized
+2023-03-09 14:17:38,295 - custom_logger - INFO - My Data Initialized
+2023-03-09 14:17:39,844 - custom_logger - INFO - Data loaded.
+2023-03-09 14:17:39,844 - custom_logger - INFO - Data loaded.
+2023-03-09 14:17:47,200 - custom_logger - INFO - My Data Initialized
+2023-03-09 14:17:47,200 - custom_logger - INFO - My Data Initialized
+2023-03-09 14:17:47,200 - custom_logger - INFO - My Data Initialized
+2023-03-09 14:17:47,466 - custom_logger - INFO - Data loaded.
+2023-03-09 14:17:47,466 - custom_logger - INFO - Data loaded.
+2023-03-09 14:17:47,466 - custom_logger - INFO - Data loaded.
+2023-03-09 14:34:04,557 - custom_logger - INFO - My Data Initialized
+2023-03-09 14:34:04,849 - custom_logger - INFO - Data loaded.
+2023-03-09 14:34:09,859 - custom_logger - INFO - My Data Initialized
+2023-03-09 14:34:09,859 - custom_logger - INFO - My Data Initialized
+2023-03-09 14:34:11,542 - custom_logger - INFO - Data loaded.
+2023-03-09 14:34:11,542 - custom_logger - INFO - Data loaded.
+2023-03-09 14:43:48,162 - custom_logger - INFO - Data loaded.
+2023-03-09 14:43:48,163 - custom_logger - INFO - My Data Initialized and loaded
+2023-03-09 14:46:57,880 - custom_logger - INFO - Data loaded.
+2023-03-09 14:46:57,880 - custom_logger - INFO - My Data Initialized and loaded
+2023-03-09 14:47:13,784 - custom_logger - INFO - Your selected dataframe has 5 columns.
+There are 1 columns that have missing values.
+2023-03-09 14:47:27,260 - custom_logger - INFO - Data loaded.
+2023-03-09 14:47:27,260 - custom_logger - INFO - Data loaded.
+2023-03-09 14:47:27,261 - custom_logger - INFO - My Data Initialized and loaded
+2023-03-09 14:47:27,261 - custom_logger - INFO - My Data Initialized and loaded
+2023-03-09 14:47:30,706 - custom_logger - INFO - Your selected dataframe has 122 columns.
+There are 67 columns that have missing values.
+2023-03-09 14:47:30,706 - custom_logger - INFO - Your selected dataframe has 122 columns.
+There are 67 columns that have missing values.
+2023-03-09 14:48:04,931 - custom_logger - INFO - Data loaded.
+2023-03-09 14:48:04,931 - custom_logger - INFO - Data loaded.
+2023-03-09 14:48:04,931 - custom_logger - INFO - Data loaded.
+2023-03-09 14:48:04,932 - custom_logger - INFO - My Data Initialized and loaded
+2023-03-09 14:48:04,932 - custom_logger - INFO - My Data Initialized and loaded
+2023-03-09 14:48:04,932 - custom_logger - INFO - My Data Initialized and loaded
+2023-03-09 14:48:12,382 - custom_logger - INFO - Your selected dataframe has 121 columns.
+There are 64 columns that have missing values.
+2023-03-09 14:48:12,382 - custom_logger - INFO - Your selected dataframe has 121 columns.
+There are 64 columns that have missing values.
+2023-03-09 14:48:12,382 - custom_logger - INFO - Your selected dataframe has 121 columns.
+There are 64 columns that have missing values.
+2023-03-09 15:22:32,807 - custom_logger - INFO - Data loaded.
+2023-03-09 15:22:32,808 - custom_logger - INFO - My Data Initialized and loaded
+2023-03-09 15:22:51,378 - custom_logger - INFO - Data loaded.
+2023-03-09 15:22:51,378 - custom_logger - INFO - Data loaded.
+2023-03-09 15:22:51,378 - custom_logger - INFO - Data loaded.
+2023-03-09 15:22:51,380 - custom_logger - INFO - My Data Initialized and loaded
+2023-03-09 15:22:51,380 - custom_logger - INFO - My Data Initialized and loaded
+2023-03-09 15:22:51,380 - custom_logger - INFO - My Data Initialized and loaded
+2023-03-09 15:22:58,612 - custom_logger - INFO - Data loaded.
+2023-03-09 15:22:58,612 - custom_logger - INFO - Data loaded.
+2023-03-09 15:22:58,612 - custom_logger - INFO - Data loaded.
+2023-03-09 15:22:58,612 - custom_logger - INFO - Data loaded.
+2023-03-09 15:22:58,614 - custom_logger - INFO - My Data Initialized and loaded
+2023-03-09 15:22:58,614 - custom_logger - INFO - My Data Initialized and loaded
+2023-03-09 15:22:58,614 - custom_logger - INFO - My Data Initialized and loaded
+2023-03-09 15:22:58,614 - custom_logger - INFO - My Data Initialized and loaded
+2023-03-09 15:26:33,471 - custom_logger - INFO - Data loaded.
+2023-03-09 15:26:33,471 - custom_logger - INFO - Data loaded.
+2023-03-09 15:26:33,471 - custom_logger - INFO - Data loaded.
+2023-03-09 15:26:33,471 - custom_logger - INFO - Data loaded.
+2023-03-09 15:26:33,471 - custom_logger - INFO - Data loaded.
+2023-03-09 15:26:33,474 - custom_logger - INFO - My Data Initialized and loaded
+2023-03-09 15:26:33,474 - custom_logger - INFO - My Data Initialized and loaded
+2023-03-09 15:26:33,474 - custom_logger - INFO - My Data Initialized and loaded
+2023-03-09 15:26:33,474 - custom_logger - INFO - My Data Initialized and loaded
+2023-03-09 15:26:33,474 - custom_logger - INFO - My Data Initialized and loaded
+2023-03-09 15:32:59,097 - custom_logger - INFO - Data loaded.
+2023-03-09 15:32:59,097 - custom_logger - INFO - My Data Initialized and loaded
+2023-03-09 15:33:03,714 - custom_logger - INFO - Data loaded.
+2023-03-09 15:33:03,714 - custom_logger - INFO - Data loaded.
+2023-03-09 15:33:03,715 - custom_logger - INFO - My Data Initialized and loaded
+2023-03-09 15:33:03,715 - custom_logger - INFO - My Data Initialized and loaded
+2023-03-09 15:33:14,237 - custom_logger - INFO - Data loaded.
+2023-03-09 15:33:14,237 - custom_logger - INFO - Data loaded.
+2023-03-09 15:33:14,237 - custom_logger - INFO - Data loaded.
+2023-03-09 15:33:14,239 - custom_logger - INFO - My Data Initialized and loaded
+2023-03-09 15:33:14,239 - custom_logger - INFO - My Data Initialized and loaded
+2023-03-09 15:33:14,239 - custom_logger - INFO - My Data Initialized and loaded
+2023-03-09 15:33:24,191 - custom_logger - INFO - Your selected dataframe has 122 columns.
+There are 67 columns that have missing values.
+2023-03-09 15:33:24,191 - custom_logger - INFO - Your selected dataframe has 122 columns.
+There are 67 columns that have missing values.
+2023-03-09 15:33:24,191 - custom_logger - INFO - Your selected dataframe has 122 columns.
+There are 67 columns that have missing values.
+2023-03-09 15:42:43,427 - custom_logger - INFO - Data loaded.
+2023-03-09 15:42:43,428 - custom_logger - INFO - My Data Initialized and loaded
+2023-03-09 15:42:52,009 - custom_logger - INFO - Data loaded.
+2023-03-09 15:42:52,009 - custom_logger - INFO - Data loaded.
+2023-03-09 15:42:52,010 - custom_logger - INFO - My Data Initialized and loaded
+2023-03-09 15:42:52,010 - custom_logger - INFO - My Data Initialized and loaded
+2023-03-09 15:45:08,481 - custom_logger - INFO - Data loaded.
+2023-03-09 15:45:08,482 - custom_logger - INFO - My Data Initialized and loaded
+2023-03-09 15:45:16,284 - custom_logger - INFO - Data loaded.
+2023-03-09 15:45:16,284 - custom_logger - INFO - Data loaded.
+2023-03-09 15:45:16,285 - custom_logger - INFO - My Data Initialized and loaded
+2023-03-09 15:45:16,285 - custom_logger - INFO - My Data Initialized and loaded
+2023-03-09 15:49:10,379 - custom_logger - INFO - Data loaded.
+2023-03-09 15:49:10,380 - custom_logger - INFO - My Data Initialized and loaded
+2023-03-09 15:49:17,135 - custom_logger - INFO - Data loaded.
+2023-03-09 15:49:17,135 - custom_logger - INFO - Data loaded.
+2023-03-09 15:49:17,136 - custom_logger - INFO - My Data Initialized and loaded
+2023-03-09 15:49:17,136 - custom_logger - INFO - My Data Initialized and loaded
+2023-03-09 17:43:49,496 - custom_logger - INFO - Data loaded.
+2023-03-09 17:43:49,497 - custom_logger - INFO - My Data Initialized and loaded
+2023-03-09 17:43:55,438 - custom_logger - INFO - Data loaded.
+2023-03-09 17:43:55,438 - custom_logger - INFO - Data loaded.
+2023-03-09 17:43:55,440 - custom_logger - INFO - My Data Initialized and loaded
+2023-03-09 17:43:55,440 - custom_logger - INFO - My Data Initialized and loaded
+2023-03-09 18:07:24,826 - custom_logger - INFO - Data loaded.
+2023-03-09 18:07:24,827 - custom_logger - INFO - My Data Initialized and loaded
+2023-03-09 18:07:29,209 - custom_logger - INFO - Data loaded.
+2023-03-09 18:07:29,209 - custom_logger - INFO - Data loaded.
+2023-03-09 18:07:29,210 - custom_logger - INFO - My Data Initialized and loaded
+2023-03-09 18:07:29,210 - custom_logger - INFO - My Data Initialized and loaded
+2023-03-09 18:09:41,683 - custom_logger - INFO - Data loaded.
+2023-03-09 18:09:41,684 - custom_logger - INFO - My Data Initialized and loaded
+2023-03-09 18:09:45,402 - custom_logger - INFO - Data loaded.
+2023-03-09 18:09:45,402 - custom_logger - INFO - Data loaded.
+2023-03-09 18:09:45,403 - custom_logger - INFO - My Data Initialized and loaded
+2023-03-09 18:09:45,403 - custom_logger - INFO - My Data Initialized and loaded
+2023-03-09 20:56:22,119 - custom_logger - INFO - Data loaded.
+2023-03-09 20:56:22,120 - custom_logger - INFO - My Data Initialized and loaded
+2023-03-09 20:56:32,011 - custom_logger - INFO - Data loaded.
+2023-03-09 20:56:32,011 - custom_logger - INFO - Data loaded.
+2023-03-09 20:56:32,013 - custom_logger - INFO - My Data Initialized and loaded
+2023-03-09 20:56:32,013 - custom_logger - INFO - My Data Initialized and loaded
+2023-03-09 20:57:50,945 - custom_logger - INFO - Data loaded.
+2023-03-09 20:57:50,946 - custom_logger - INFO - My Data Initialized and loaded
+2023-03-09 20:57:51,280 - custom_logger - INFO - Data loaded.
+2023-03-09 20:57:51,280 - custom_logger - INFO - Data loaded.
+2023-03-09 20:57:51,281 - custom_logger - INFO - My Data Initialized and loaded
+2023-03-09 20:57:51,281 - custom_logger - INFO - My Data Initialized and loaded
+2023-03-09 21:01:46,014 - custom_logger - INFO - Data loaded.
+2023-03-09 21:01:46,015 - custom_logger - INFO - My Data Initialized and loaded
+2023-03-09 21:01:54,482 - custom_logger - INFO - Data loaded.
+2023-03-09 21:01:54,482 - custom_logger - INFO - Data loaded.
+2023-03-09 21:01:54,483 - custom_logger - INFO - My Data Initialized and loaded
+2023-03-09 21:01:54,483 - custom_logger - INFO - My Data Initialized and loaded
+2023-03-10 09:15:53,021 - custom_logger - INFO - Data loaded.
+2023-03-10 09:15:53,021 - custom_logger - INFO - My Data Initialized and loaded
+2023-03-10 09:15:56,897 - custom_logger - INFO - Data loaded.
+2023-03-10 09:15:56,897 - custom_logger - INFO - Data loaded.
+2023-03-10 09:15:56,898 - custom_logger - INFO - My Data Initialized and loaded
+2023-03-10 09:15:56,898 - custom_logger - INFO - My Data Initialized and loaded
+2023-03-10 09:47:51,447 - custom_logger - INFO - Data loaded.
+2023-03-10 09:47:51,448 - custom_logger - INFO - My Data Initialized and loaded
+2023-03-10 09:48:03,212 - custom_logger - INFO - Data loaded.
+2023-03-10 09:48:03,212 - custom_logger - INFO - Data loaded.
+2023-03-10 09:48:03,213 - custom_logger - INFO - My Data Initialized and loaded
+2023-03-10 09:48:03,213 - custom_logger - INFO - My Data Initialized and loaded
+2023-03-10 10:29:31,091 - custom_logger - INFO - Data loaded.
+2023-03-10 10:29:31,092 - custom_logger - INFO - My Data Initialized and loaded
+2023-03-10 10:29:31,887 - custom_logger - INFO - Your selected dataframe has 122 columns.
+There are 67 columns that have missing values.
+2023-03-10 10:29:36,226 - custom_logger - INFO - Data loaded.
+2023-03-10 10:29:36,226 - custom_logger - INFO - Data loaded.
+2023-03-10 10:29:36,228 - custom_logger - INFO - My Data Initialized and loaded
+2023-03-10 10:29:36,228 - custom_logger - INFO - My Data Initialized and loaded
+2023-03-10 10:31:14,662 - custom_logger - INFO - Data loaded.
+2023-03-10 10:31:14,662 - custom_logger - INFO - My Data Initialized and loaded
+2023-03-10 10:31:18,223 - custom_logger - INFO - Data loaded.
+2023-03-10 10:31:18,223 - custom_logger - INFO - Data loaded.
+2023-03-10 10:31:18,223 - custom_logger - INFO - My Data Initialized and loaded
+2023-03-10 10:31:18,223 - custom_logger - INFO - My Data Initialized and loaded
+2023-03-10 10:35:33,763 - custom_logger - INFO - Data loaded.
+2023-03-10 10:35:33,764 - custom_logger - INFO - My Data Initialized and loaded
+2023-03-10 10:35:35,344 - custom_logger - INFO - Data loaded.
+2023-03-10 10:35:35,344 - custom_logger - INFO - Data loaded.
+2023-03-10 10:35:35,345 - custom_logger - INFO - My Data Initialized and loaded
+2023-03-10 10:35:35,345 - custom_logger - INFO - My Data Initialized and loaded
+2023-03-10 11:04:04,165 - custom_logger - INFO - Your selected dataframe has 122 columns.
+There are 67 columns that have missing values.
+2023-03-10 11:04:04,165 - custom_logger - INFO - Your selected dataframe has 122 columns.
+There are 67 columns that have missing values.
+2023-03-10 11:22:56,846 - custom_logger - INFO - Data loaded.
+2023-03-10 11:22:56,848 - custom_logger - INFO - My Data Initialized and loaded
+2023-03-10 11:23:00,713 - custom_logger - INFO - Data loaded.
+2023-03-10 11:23:00,713 - custom_logger - INFO - Data loaded.
+2023-03-10 11:23:00,714 - custom_logger - INFO - My Data Initialized and loaded
+2023-03-10 11:23:00,714 - custom_logger - INFO - My Data Initialized and loaded
+2023-03-10 11:55:26,692 - custom_logger - INFO - Data loaded.
+2023-03-10 11:55:26,692 - custom_logger - INFO - My Data Initialized and loaded
+2023-03-10 11:56:07,337 - custom_logger - INFO - Data loaded.
+2023-03-10 11:56:07,337 - custom_logger - INFO - Data loaded.
+2023-03-10 11:56:07,337 - custom_logger - INFO - My Data Initialized and loaded
+2023-03-10 11:56:07,337 - custom_logger - INFO - My Data Initialized and loaded
+2023-03-10 11:56:11,667 - custom_logger - INFO - Data loaded.
+2023-03-10 11:56:11,667 - custom_logger - INFO - Data loaded.
+2023-03-10 11:56:11,667 - custom_logger - INFO - Data loaded.
+2023-03-10 11:56:11,669 - custom_logger - INFO - My Data Initialized and loaded
+2023-03-10 11:56:11,669 - custom_logger - INFO - My Data Initialized and loaded
+2023-03-10 11:56:11,669 - custom_logger - INFO - My Data Initialized and loaded
+2023-03-10 13:19:57,943 - custom_logger - INFO - Data loaded.
+2023-03-10 13:19:57,944 - custom_logger - INFO - My Data Initialized and loaded
+2023-03-10 13:20:03,067 - custom_logger - INFO - Data loaded.
+2023-03-10 13:20:03,067 - custom_logger - INFO - Data loaded.
+2023-03-10 13:20:03,068 - custom_logger - INFO - My Data Initialized and loaded
+2023-03-10 13:20:03,068 - custom_logger - INFO - My Data Initialized and loaded
+2023-03-10 13:48:47,004 - custom_logger - INFO - Data loaded.
+2023-03-10 13:48:47,005 - custom_logger - INFO - My Data Initialized and loaded
+2023-03-10 13:48:54,917 - custom_logger - INFO - Your selected dataframe has 5 columns.
+There are 1 columns that have missing values.
+2023-03-10 14:08:29,932 - custom_logger - INFO - Data loaded.
+2023-03-10 14:08:29,933 - custom_logger - INFO - My Data Initialized and loaded
+2023-03-10 14:08:33,269 - custom_logger - INFO - Your selected dataframe has 5 columns.
+There are 1 columns that have missing values.
+2023-03-10 14:08:36,991 - custom_logger - INFO - Data loaded.
+2023-03-10 14:08:36,991 - custom_logger - INFO - Data loaded.
+2023-03-10 14:08:36,998 - custom_logger - INFO - My Data Initialized and loaded
+2023-03-10 14:08:36,998 - custom_logger - INFO - My Data Initialized and loaded
+2023-03-10 14:09:08,313 - custom_logger - INFO - Data loaded.
+2023-03-10 14:09:08,313 - custom_logger - INFO - Data loaded.
+2023-03-10 14:09:08,313 - custom_logger - INFO - Data loaded.
+2023-03-10 14:09:08,315 - custom_logger - INFO - My Data Initialized and loaded
+2023-03-10 14:09:08,315 - custom_logger - INFO - My Data Initialized and loaded
+2023-03-10 14:09:08,315 - custom_logger - INFO - My Data Initialized and loaded
+2023-03-10 14:09:08,361 - custom_logger - INFO - DataProcessing initialized.
+2023-03-10 14:09:08,361 - custom_logger - INFO - DataProcessing initialized.
+2023-03-10 14:09:08,361 - custom_logger - INFO - DataProcessing initialized.
+2023-03-10 14:09:08,361 - custom_logger - INFO - DataProcessing initialized.
+2023-03-10 14:09:19,718 - custom_logger - INFO - Your selected dataframe has 122 columns.
+There are 67 columns that have missing values.
+2023-03-10 14:09:19,718 - custom_logger - INFO - Your selected dataframe has 122 columns.
+There are 67 columns that have missing values.
+2023-03-10 14:09:19,718 - custom_logger - INFO - Your selected dataframe has 122 columns.
+There are 67 columns that have missing values.
+2023-03-10 14:09:19,718 - custom_logger - INFO - Your selected dataframe has 122 columns.
+There are 67 columns that have missing values.
+2023-03-10 14:09:38,647 - custom_logger - INFO - Data loaded.
+2023-03-10 14:09:38,647 - custom_logger - INFO - Data loaded.
+2023-03-10 14:09:38,647 - custom_logger - INFO - Data loaded.
+2023-03-10 14:09:38,647 - custom_logger - INFO - Data loaded.
+2023-03-10 14:09:38,647 - custom_logger - INFO - Data loaded.
+2023-03-10 14:09:38,650 - custom_logger - INFO - My Data Initialized and loaded
+2023-03-10 14:09:38,650 - custom_logger - INFO - My Data Initialized and loaded
+2023-03-10 14:09:38,650 - custom_logger - INFO - My Data Initialized and loaded
+2023-03-10 14:09:38,650 - custom_logger - INFO - My Data Initialized and loaded
+2023-03-10 14:09:38,650 - custom_logger - INFO - My Data Initialized and loaded
+2023-03-10 14:09:38,653 - custom_logger - INFO - DataProcessing initialized.
+2023-03-10 14:09:38,653 - custom_logger - INFO - DataProcessing initialized.
+2023-03-10 14:09:38,653 - custom_logger - INFO - DataProcessing initialized.
+2023-03-10 14:09:38,653 - custom_logger - INFO - DataProcessing initialized.
+2023-03-10 14:09:38,653 - custom_logger - INFO - DataProcessing initialized.
+2023-03-10 14:09:38,653 - custom_logger - INFO - DataProcessing initialized.
+2023-03-10 14:10:00,572 - custom_logger - INFO - DataProcessing initialized.
+2023-03-10 14:10:00,572 - custom_logger - INFO - DataProcessing initialized.
+2023-03-10 14:10:00,572 - custom_logger - INFO - DataProcessing initialized.
+2023-03-10 14:10:00,572 - custom_logger - INFO - DataProcessing initialized.
+2023-03-10 14:10:00,572 - custom_logger - INFO - DataProcessing initialized.
+2023-03-10 14:10:00,572 - custom_logger - INFO - DataProcessing initialized.
+2023-03-10 14:10:00,572 - custom_logger - INFO - DataProcessing initialized.
+2023-03-10 14:10:00,572 - custom_logger - INFO - DataProcessing initialized.
+2023-03-10 14:10:10,189 - custom_logger - INFO - DataProcessing initialized.
+2023-03-10 14:10:10,189 - custom_logger - INFO - DataProcessing initialized.
+2023-03-10 14:10:10,189 - custom_logger - INFO - DataProcessing initialized.
+2023-03-10 14:10:10,189 - custom_logger - INFO - DataProcessing initialized.
+2023-03-10 14:10:10,189 - custom_logger - INFO - DataProcessing initialized.
+2023-03-10 14:10:10,189 - custom_logger - INFO - DataProcessing initialized.
+2023-03-10 14:10:10,189 - custom_logger - INFO - DataProcessing initialized.
+2023-03-10 14:10:10,189 - custom_logger - INFO - DataProcessing initialized.
+2023-03-10 14:10:10,189 - custom_logger - INFO - DataProcessing initialized.
+2023-03-10 14:10:10,189 - custom_logger - INFO - DataProcessing initialized.
+2023-03-10 14:10:25,642 - custom_logger - INFO - DataProcessing initialized.
+2023-03-10 14:10:25,642 - custom_logger - INFO - DataProcessing initialized.
+2023-03-10 14:10:25,642 - custom_logger - INFO - DataProcessing initialized.
+2023-03-10 14:10:25,642 - custom_logger - INFO - DataProcessing initialized.
+2023-03-10 14:10:25,642 - custom_logger - INFO - DataProcessing initialized.
+2023-03-10 14:10:25,642 - custom_logger - INFO - DataProcessing initialized.
+2023-03-10 14:10:25,642 - custom_logger - INFO - DataProcessing initialized.
+2023-03-10 14:10:25,642 - custom_logger - INFO - DataProcessing initialized.
+2023-03-10 14:10:25,642 - custom_logger - INFO - DataProcessing initialized.
+2023-03-10 14:10:25,642 - custom_logger - INFO - DataProcessing initialized.
+2023-03-10 14:10:25,642 - custom_logger - INFO - DataProcessing initialized.
+2023-03-10 14:10:25,642 - custom_logger - INFO - DataProcessing initialized.
+2023-03-10 14:10:51,673 - custom_logger - INFO - DataProcessing initialized.
+2023-03-10 14:10:51,673 - custom_logger - INFO - DataProcessing initialized.
+2023-03-10 14:10:51,673 - custom_logger - INFO - DataProcessing initialized.
+2023-03-10 14:10:51,673 - custom_logger - INFO - DataProcessing initialized.
+2023-03-10 14:10:51,673 - custom_logger - INFO - DataProcessing initialized.
+2023-03-10 14:10:51,673 - custom_logger - INFO - DataProcessing initialized.
+2023-03-10 14:10:51,673 - custom_logger - INFO - DataProcessing initialized.
+2023-03-10 14:10:51,673 - custom_logger - INFO - DataProcessing initialized.
+2023-03-10 14:10:51,673 - custom_logger - INFO - DataProcessing initialized.
+2023-03-10 14:10:51,673 - custom_logger - INFO - DataProcessing initialized.
+2023-03-10 14:10:51,673 - custom_logger - INFO - DataProcessing initialized.
+2023-03-10 14:10:51,673 - custom_logger - INFO - DataProcessing initialized.
+2023-03-10 14:10:51,673 - custom_logger - INFO - DataProcessing initialized.
+2023-03-10 14:10:51,673 - custom_logger - INFO - DataProcessing initialized.
+2023-03-10 14:11:06,709 - custom_logger - INFO - DataProcessing initialized.
+2023-03-10 14:11:06,709 - custom_logger - INFO - DataProcessing initialized.
+2023-03-10 14:11:06,709 - custom_logger - INFO - DataProcessing initialized.
+2023-03-10 14:11:06,709 - custom_logger - INFO - DataProcessing initialized.
+2023-03-10 14:11:06,709 - custom_logger - INFO - DataProcessing initialized.
+2023-03-10 14:11:06,709 - custom_logger - INFO - DataProcessing initialized.
+2023-03-10 14:11:06,709 - custom_logger - INFO - DataProcessing initialized.
+2023-03-10 14:11:06,709 - custom_logger - INFO - DataProcessing initialized.
+2023-03-10 14:11:06,709 - custom_logger - INFO - DataProcessing initialized.
+2023-03-10 14:11:06,709 - custom_logger - INFO - DataProcessing initialized.
+2023-03-10 14:11:06,709 - custom_logger - INFO - DataProcessing initialized.
+2023-03-10 14:11:06,709 - custom_logger - INFO - DataProcessing initialized.
+2023-03-10 14:11:06,709 - custom_logger - INFO - DataProcessing initialized.
+2023-03-10 14:11:06,709 - custom_logger - INFO - DataProcessing initialized.
+2023-03-10 14:11:06,709 - custom_logger - INFO - DataProcessing initialized.
+2023-03-10 14:11:06,709 - custom_logger - INFO - DataProcessing initialized.
+2023-03-10 14:12:34,405 - custom_logger - INFO - Your selected dataframe has 122 columns.
+There are 67 columns that have missing values.
+2023-03-10 14:12:34,405 - custom_logger - INFO - Your selected dataframe has 122 columns.
+There are 67 columns that have missing values.
+2023-03-10 14:12:34,405 - custom_logger - INFO - Your selected dataframe has 122 columns.
+There are 67 columns that have missing values.
+2023-03-10 14:12:34,405 - custom_logger - INFO - Your selected dataframe has 122 columns.
+There are 67 columns that have missing values.
+2023-03-10 14:12:34,405 - custom_logger - INFO - Your selected dataframe has 122 columns.
+There are 67 columns that have missing values.
+2023-03-10 14:12:34,405 - custom_logger - INFO - Your selected dataframe has 122 columns.
+There are 67 columns that have missing values.
+2023-03-10 14:12:34,405 - custom_logger - INFO - Your selected dataframe has 122 columns.
+There are 67 columns that have missing values.
+2023-03-10 14:12:34,405 - custom_logger - INFO - Your selected dataframe has 122 columns.
+There are 67 columns that have missing values.
+2023-03-10 14:12:34,405 - custom_logger - INFO - Your selected dataframe has 122 columns.
+There are 67 columns that have missing values.
+2023-03-10 14:12:34,405 - custom_logger - INFO - Your selected dataframe has 122 columns.
+There are 67 columns that have missing values.
+2023-03-10 14:12:34,405 - custom_logger - INFO - Your selected dataframe has 122 columns.
+There are 67 columns that have missing values.
+2023-03-10 14:12:34,405 - custom_logger - INFO - Your selected dataframe has 122 columns.
+There are 67 columns that have missing values.
+2023-03-10 14:12:34,405 - custom_logger - INFO - Your selected dataframe has 122 columns.
+There are 67 columns that have missing values.
+2023-03-10 14:12:34,405 - custom_logger - INFO - Your selected dataframe has 122 columns.
+There are 67 columns that have missing values.
+2023-03-10 14:12:34,405 - custom_logger - INFO - Your selected dataframe has 122 columns.
+There are 67 columns that have missing values.
+2023-03-10 14:12:34,405 - custom_logger - INFO - Your selected dataframe has 122 columns.
+There are 67 columns that have missing values.
+2023-03-10 14:15:09,875 - custom_logger - INFO - Data loaded.
+2023-03-10 14:15:09,876 - custom_logger - INFO - My Data Initialized and loaded
+2023-03-10 14:15:09,877 - custom_logger - INFO - DataProcessing initialized.
+2023-03-10 14:15:09,877 - custom_logger - INFO - DataProcessing initialized.
+2023-03-10 14:15:42,397 - custom_logger - INFO - Your selected dataframe has 105 columns.
+There are 50 columns that have missing values.
+2023-03-10 14:15:42,397 - custom_logger - INFO - Your selected dataframe has 105 columns.
+There are 50 columns that have missing values.
+2023-03-10 14:33:38,777 - custom_logger - INFO - Data loaded.
+2023-03-10 14:33:38,778 - custom_logger - INFO - My Data Initialized and loaded
+2023-03-10 14:33:38,779 - custom_logger - INFO - DataProcessing initialized.
+2023-03-10 14:33:38,779 - custom_logger - INFO - DataProcessing initialized.
+2023-03-10 14:38:17,814 - custom_logger - INFO - Data loaded.
+2023-03-10 14:38:17,815 - custom_logger - INFO - My Data Initialized and loaded
+2023-03-10 14:38:17,816 - custom_logger - INFO - DataProcessing initialized.
+2023-03-10 14:38:17,816 - custom_logger - INFO - DataProcessing initialized.
+2023-03-10 14:43:30,850 - custom_logger - INFO - Data loaded.
+2023-03-10 14:43:30,850 - custom_logger - INFO - My Data Initialized and loaded
+2023-03-10 14:43:30,851 - custom_logger - INFO - DataProcessing initialized.
+2023-03-10 14:43:30,851 - custom_logger - INFO - DataProcessing initialized.
+2023-03-10 15:51:15,239 - custom_logger - INFO - Data loaded.
+2023-03-10 15:51:15,240 - custom_logger - INFO - My Data Initialized and loaded
+2023-03-10 15:51:15,241 - custom_logger - INFO - DataProcessing initialized.
+2023-03-10 15:51:15,241 - custom_logger - INFO - DataProcessing initialized.
+2023-03-10 15:53:15,996 - custom_logger - INFO - Data loaded.
+2023-03-10 15:53:15,997 - custom_logger - INFO - My Data Initialized and loaded
+2023-03-10 15:53:15,997 - custom_logger - INFO - DataProcessing initialized.
+2023-03-10 15:53:15,997 - custom_logger - INFO - DataProcessing initialized.
+2023-03-13 11:03:34,511 - custom_logger - INFO - Data loaded.
+2023-03-13 11:03:34,512 - custom_logger - INFO - My Data Initialized and loaded
+2023-03-13 11:03:34,513 - custom_logger - INFO - DataProcessing initialized.
+2023-03-13 11:03:34,513 - custom_logger - INFO - DataProcessing initialized.
+2023-03-13 11:10:11,524 - custom_logger - INFO - Data loaded.
+2023-03-13 11:10:11,526 - custom_logger - INFO - My Data Initialized and loaded
+2023-03-13 11:10:11,527 - custom_logger - INFO - DataProcessing initialized.
+2023-03-13 11:10:11,527 - custom_logger - INFO - DataProcessing initialized.
+2023-03-13 11:21:38,511 - custom_logger - INFO - Data loaded.
+2023-03-13 11:21:38,512 - custom_logger - INFO - My Data Initialized and loaded
+2023-03-13 11:21:38,513 - custom_logger - INFO - DataProcessing initialized.
+2023-03-13 11:21:38,513 - custom_logger - INFO - DataProcessing initialized.
+2023-03-13 11:23:24,141 - custom_logger - INFO - Data loaded.
+2023-03-13 11:23:24,141 - custom_logger - INFO - My Data Initialized and loaded
+2023-03-13 11:23:24,142 - custom_logger - INFO - DataProcessing initialized.
+2023-03-13 11:23:24,142 - custom_logger - INFO - DataProcessing initialized.
+2023-03-13 12:24:41,782 - custom_logger - INFO - Data loaded.
+2023-03-13 12:24:41,783 - custom_logger - INFO - My Data Initialized and loaded
+2023-03-13 12:24:41,785 - custom_logger - INFO - DataProcessing initialized.
+2023-03-13 12:24:41,785 - custom_logger - INFO - DataProcessing initialized.
+2023-03-13 12:36:30,747 - custom_logger - INFO - Data loaded.
+2023-03-13 12:36:30,748 - custom_logger - INFO - My Data Initialized and loaded
+2023-03-13 12:36:30,749 - custom_logger - INFO - DataProcessing initialized.
+2023-03-13 12:36:30,749 - custom_logger - INFO - DataProcessing initialized.
+2023-03-13 12:59:04,265 - custom_logger - INFO - Data loaded.
+2023-03-13 12:59:04,265 - custom_logger - INFO - My Data Initialized and loaded
+2023-03-13 12:59:04,266 - custom_logger - INFO - DataProcessing initialized.
+2023-03-13 12:59:04,266 - custom_logger - INFO - DataProcessing initialized.
+2023-03-13 13:14:50,424 - custom_logger - INFO - Data loaded.
+2023-03-13 13:14:50,430 - custom_logger - INFO - My Data Initialized and loaded
+2023-03-13 13:14:50,436 - custom_logger - INFO - DataProcessing initialized.
+2023-03-13 13:14:50,436 - custom_logger - INFO - DataProcessing initialized.
+2023-03-13 13:26:15,795 - custom_logger - INFO - Data loaded.
+2023-03-13 13:26:15,797 - custom_logger - INFO - My Data Initialized and loaded
+2023-03-13 13:26:15,798 - custom_logger - INFO - DataProcessing initialized.
+2023-03-13 13:26:15,798 - custom_logger - INFO - DataProcessing initialized.
+2023-03-13 13:31:50,082 - custom_logger - INFO - Data loaded.
+2023-03-13 13:31:50,082 - custom_logger - INFO - My Data Initialized and loaded
+2023-03-13 13:31:50,083 - custom_logger - INFO - DataProcessing initialized.
+2023-03-13 13:31:50,083 - custom_logger - INFO - DataProcessing initialized.
+2023-03-13 14:08:55,708 - custom_logger - INFO - Data loaded.
+2023-03-13 14:08:55,710 - custom_logger - INFO - My Data Initialized and loaded
+2023-03-13 14:08:55,711 - custom_logger - INFO - DataInputter initialized.
+2023-03-13 14:08:55,711 - custom_logger - INFO - DataInputter initialized.
+2023-03-13 14:11:32,607 - custom_logger - INFO - Data loaded.
+2023-03-13 14:11:32,607 - custom_logger - INFO - My Data Initialized and loaded
+2023-03-13 14:11:32,608 - custom_logger - INFO - DataInputter initialized.
+2023-03-13 14:11:32,608 - custom_logger - INFO - DataInputter initialized.
+2023-03-13 14:30:19,989 - custom_logger - INFO - Data loaded.
+2023-03-13 14:30:19,991 - custom_logger - INFO - My Data Initialized and loaded
+2023-03-13 14:30:19,992 - custom_logger - INFO - DataInputter initialized.
+2023-03-13 14:30:19,992 - custom_logger - INFO - DataInputter initialized.
+2023-03-13 14:34:28,684 - custom_logger - INFO - Data loaded.
+2023-03-13 14:34:28,685 - custom_logger - INFO - My Data Initialized and loaded
+2023-03-13 14:34:28,685 - custom_logger - INFO - DataInputter initialized.
+2023-03-13 14:34:28,685 - custom_logger - INFO - DataInputter initialized.
+2023-03-13 16:35:29,348 - custom_logger - INFO - Data loaded.
+2023-03-13 16:35:29,349 - custom_logger - INFO - My Data Initialized and loaded
+2023-03-13 16:35:29,350 - custom_logger - INFO - DataInputter initialized.
+2023-03-13 16:35:29,350 - custom_logger - INFO - DataInputter initialized.
+2023-03-13 16:35:30,214 - custom_logger - INFO - Your selected dataframe has 122 columns.
+There are 67 columns that have missing values.
+2023-03-13 16:35:30,214 - custom_logger - INFO - Your selected dataframe has 122 columns.
+There are 67 columns that have missing values.
+2023-03-13 16:35:31,740 - custom_logger - INFO - Data loaded.
+2023-03-13 16:35:31,740 - custom_logger - INFO - Data loaded.
+2023-03-13 16:35:31,740 - custom_logger - INFO - Data loaded.
+2023-03-13 16:35:31,741 - custom_logger - INFO - My Data Initialized and loaded
+2023-03-13 16:35:31,741 - custom_logger - INFO - My Data Initialized and loaded
+2023-03-13 16:35:31,741 - custom_logger - INFO - My Data Initialized and loaded
+2023-03-13 16:35:31,743 - custom_logger - INFO - DataInputter initialized.
+2023-03-13 16:35:31,743 - custom_logger - INFO - DataInputter initialized.
+2023-03-13 16:35:31,743 - custom_logger - INFO - DataInputter initialized.
+2023-03-13 16:35:31,743 - custom_logger - INFO - DataInputter initialized.
+2023-03-13 16:35:33,955 - custom_logger - INFO - Your selected dataframe has 121 columns.
+There are 64 columns that have missing values.
+2023-03-13 16:35:33,955 - custom_logger - INFO - Your selected dataframe has 121 columns.
+There are 64 columns that have missing values.
+2023-03-13 16:35:33,955 - custom_logger - INFO - Your selected dataframe has 121 columns.
+There are 64 columns that have missing values.
+2023-03-13 16:35:33,955 - custom_logger - INFO - Your selected dataframe has 121 columns.
+There are 64 columns that have missing values.
+2023-03-13 16:35:38,468 - custom_logger - INFO - DataInputter initialized.
+2023-03-13 16:35:38,468 - custom_logger - INFO - DataInputter initialized.
+2023-03-13 16:35:38,468 - custom_logger - INFO - DataInputter initialized.
+2023-03-13 16:35:38,468 - custom_logger - INFO - DataInputter initialized.
+2023-03-13 16:35:38,468 - custom_logger - INFO - DataInputter initialized.
+2023-03-13 16:35:38,468 - custom_logger - INFO - DataInputter initialized.
+2023-03-13 16:35:39,838 - custom_logger - INFO - DataInputter initialized.
+2023-03-13 16:35:39,838 - custom_logger - INFO - DataInputter initialized.
+2023-03-13 16:35:39,838 - custom_logger - INFO - DataInputter initialized.
+2023-03-13 16:35:39,838 - custom_logger - INFO - DataInputter initialized.
+2023-03-13 16:35:39,838 - custom_logger - INFO - DataInputter initialized.
+2023-03-13 16:35:39,838 - custom_logger - INFO - DataInputter initialized.
+2023-03-13 16:35:39,838 - custom_logger - INFO - DataInputter initialized.
+2023-03-13 16:35:39,838 - custom_logger - INFO - DataInputter initialized.
+2023-03-13 16:35:45,391 - custom_logger - INFO - DataInputter initialized.
+2023-03-13 16:35:45,391 - custom_logger - INFO - DataInputter initialized.
+2023-03-13 16:35:45,391 - custom_logger - INFO - DataInputter initialized.
+2023-03-13 16:35:45,391 - custom_logger - INFO - DataInputter initialized.
+2023-03-13 16:35:45,391 - custom_logger - INFO - DataInputter initialized.
+2023-03-13 16:35:45,391 - custom_logger - INFO - DataInputter initialized.
+2023-03-13 16:35:45,391 - custom_logger - INFO - DataInputter initialized.
+2023-03-13 16:35:45,391 - custom_logger - INFO - DataInputter initialized.
+2023-03-13 16:35:45,391 - custom_logger - INFO - DataInputter initialized.
+2023-03-13 16:35:45,391 - custom_logger - INFO - DataInputter initialized.
+2023-03-13 16:35:56,543 - custom_logger - INFO - DataInputter initialized.
+2023-03-13 16:35:56,543 - custom_logger - INFO - DataInputter initialized.
+2023-03-13 16:35:56,543 - custom_logger - INFO - DataInputter initialized.
+2023-03-13 16:35:56,543 - custom_logger - INFO - DataInputter initialized.
+2023-03-13 16:35:56,543 - custom_logger - INFO - DataInputter initialized.
+2023-03-13 16:35:56,543 - custom_logger - INFO - DataInputter initialized.
+2023-03-13 16:35:56,543 - custom_logger - INFO - DataInputter initialized.
+2023-03-13 16:35:56,543 - custom_logger - INFO - DataInputter initialized.
+2023-03-13 16:35:56,543 - custom_logger - INFO - DataInputter initialized.
+2023-03-13 16:35:56,543 - custom_logger - INFO - DataInputter initialized.
+2023-03-13 16:35:56,543 - custom_logger - INFO - DataInputter initialized.
+2023-03-13 16:35:56,543 - custom_logger - INFO - DataInputter initialized.
+2023-03-13 16:35:56,543 - custom_logger - INFO - DataInputter initialized.
+2023-03-13 16:36:01,265 - custom_logger - INFO - DataInputter initialized.
+2023-03-13 16:36:01,265 - custom_logger - INFO - DataInputter initialized.
+2023-03-13 16:36:01,265 - custom_logger - INFO - DataInputter initialized.
+2023-03-13 16:36:01,265 - custom_logger - INFO - DataInputter initialized.
+2023-03-13 16:36:01,265 - custom_logger - INFO - DataInputter initialized.
+2023-03-13 16:36:01,265 - custom_logger - INFO - DataInputter initialized.
+2023-03-13 16:36:01,265 - custom_logger - INFO - DataInputter initialized.
+2023-03-13 16:36:01,265 - custom_logger - INFO - DataInputter initialized.
+2023-03-13 16:36:01,265 - custom_logger - INFO - DataInputter initialized.
+2023-03-13 16:36:01,265 - custom_logger - INFO - DataInputter initialized.
+2023-03-13 16:36:01,265 - custom_logger - INFO - DataInputter initialized.
+2023-03-13 16:36:01,265 - custom_logger - INFO - DataInputter initialized.
+2023-03-13 16:36:01,265 - custom_logger - INFO - DataInputter initialized.
+2023-03-13 16:36:01,265 - custom_logger - INFO - DataInputter initialized.
+2023-03-13 16:36:01,265 - custom_logger - INFO - DataInputter initialized.
+2023-03-13 16:40:11,047 - custom_logger - INFO - Data loaded.
+2023-03-13 16:40:11,047 - custom_logger - INFO - My Data Initialized and loaded
+2023-03-13 16:40:12,933 - custom_logger - INFO - Your selected dataframe has 5 columns.
+There are 1 columns that have missing values.
+2023-03-13 16:40:15,656 - custom_logger - INFO - Data loaded.
+2023-03-13 16:40:15,656 - custom_logger - INFO - Data loaded.
+2023-03-13 16:40:15,657 - custom_logger - INFO - My Data Initialized and loaded
+2023-03-13 16:40:15,657 - custom_logger - INFO - My Data Initialized and loaded
+2023-03-13 16:40:15,659 - custom_logger - INFO - DataInputter initialized.
+2023-03-13 16:40:15,659 - custom_logger - INFO - DataInputter initialized.
+2023-03-13 16:40:15,659 - custom_logger - INFO - DataInputter initialized.
+2023-03-13 16:40:16,484 - custom_logger - INFO - Your selected dataframe has 122 columns.
+There are 67 columns that have missing values.
+2023-03-13 16:40:16,484 - custom_logger - INFO - Your selected dataframe has 122 columns.
+There are 67 columns that have missing values.
+2023-03-13 16:40:16,484 - custom_logger - INFO - Your selected dataframe has 122 columns.
+There are 67 columns that have missing values.
+2023-03-13 16:40:17,659 - custom_logger - INFO - Data loaded.
+2023-03-13 16:40:17,659 - custom_logger - INFO - Data loaded.
+2023-03-13 16:40:17,659 - custom_logger - INFO - Data loaded.
+2023-03-13 16:40:17,659 - custom_logger - INFO - Data loaded.
+2023-03-13 16:40:17,661 - custom_logger - INFO - My Data Initialized and loaded
+2023-03-13 16:40:17,661 - custom_logger - INFO - My Data Initialized and loaded
+2023-03-13 16:40:17,661 - custom_logger - INFO - My Data Initialized and loaded
+2023-03-13 16:40:17,661 - custom_logger - INFO - My Data Initialized and loaded
+2023-03-13 16:40:17,664 - custom_logger - INFO - DataInputter initialized.
+2023-03-13 16:40:17,664 - custom_logger - INFO - DataInputter initialized.
+2023-03-13 16:40:17,664 - custom_logger - INFO - DataInputter initialized.
+2023-03-13 16:40:17,664 - custom_logger - INFO - DataInputter initialized.
+2023-03-13 16:40:17,664 - custom_logger - INFO - DataInputter initialized.
+2023-03-13 16:40:19,743 - custom_logger - INFO - Your selected dataframe has 121 columns.
+There are 64 columns that have missing values.
+2023-03-13 16:40:19,743 - custom_logger - INFO - Your selected dataframe has 121 columns.
+There are 64 columns that have missing values.
+2023-03-13 16:40:19,743 - custom_logger - INFO - Your selected dataframe has 121 columns.
+There are 64 columns that have missing values.
+2023-03-13 16:40:19,743 - custom_logger - INFO - Your selected dataframe has 121 columns.
+There are 64 columns that have missing values.
+2023-03-13 16:40:19,743 - custom_logger - INFO - Your selected dataframe has 121 columns.
+There are 64 columns that have missing values.
+2023-03-13 16:40:24,137 - custom_logger - INFO - DataInputter initialized.
+2023-03-13 16:40:24,137 - custom_logger - INFO - DataInputter initialized.
+2023-03-13 16:40:24,137 - custom_logger - INFO - DataInputter initialized.
+2023-03-13 16:40:24,137 - custom_logger - INFO - DataInputter initialized.
+2023-03-13 16:40:24,137 - custom_logger - INFO - DataInputter initialized.
+2023-03-13 16:40:24,137 - custom_logger - INFO - DataInputter initialized.
+2023-03-13 16:40:24,137 - custom_logger - INFO - DataInputter initialized.
+2023-03-13 16:40:25,605 - custom_logger - INFO - DataInputter initialized.
+2023-03-13 16:40:25,605 - custom_logger - INFO - DataInputter initialized.
+2023-03-13 16:40:25,605 - custom_logger - INFO - DataInputter initialized.
+2023-03-13 16:40:25,605 - custom_logger - INFO - DataInputter initialized.
+2023-03-13 16:40:25,605 - custom_logger - INFO - DataInputter initialized.
+2023-03-13 16:40:25,605 - custom_logger - INFO - DataInputter initialized.
+2023-03-13 16:40:25,605 - custom_logger - INFO - DataInputter initialized.
+2023-03-13 16:40:25,605 - custom_logger - INFO - DataInputter initialized.
+2023-03-13 16:40:25,605 - custom_logger - INFO - DataInputter initialized.
+2023-03-13 16:40:30,934 - custom_logger - INFO - DataInputter initialized.
+2023-03-13 16:40:30,934 - custom_logger - INFO - DataInputter initialized.
+2023-03-13 16:40:30,934 - custom_logger - INFO - DataInputter initialized.
+2023-03-13 16:40:30,934 - custom_logger - INFO - DataInputter initialized.
+2023-03-13 16:40:30,934 - custom_logger - INFO - DataInputter initialized.
+2023-03-13 16:40:30,934 - custom_logger - INFO - DataInputter initialized.
+2023-03-13 16:40:30,934 - custom_logger - INFO - DataInputter initialized.
+2023-03-13 16:40:30,934 - custom_logger - INFO - DataInputter initialized.
+2023-03-13 16:40:30,934 - custom_logger - INFO - DataInputter initialized.
+2023-03-13 16:40:30,934 - custom_logger - INFO - DataInputter initialized.
+2023-03-13 16:40:30,934 - custom_logger - INFO - DataInputter initialized.
+2023-03-13 16:40:41,471 - custom_logger - INFO - DataInputter initialized.
+2023-03-13 16:40:41,471 - custom_logger - INFO - DataInputter initialized.
+2023-03-13 16:40:41,471 - custom_logger - INFO - DataInputter initialized.
+2023-03-13 16:40:41,471 - custom_logger - INFO - DataInputter initialized.
+2023-03-13 16:40:41,471 - custom_logger - INFO - DataInputter initialized.
+2023-03-13 16:40:41,471 - custom_logger - INFO - DataInputter initialized.
+2023-03-13 16:40:41,471 - custom_logger - INFO - DataInputter initialized.
+2023-03-13 16:40:41,471 - custom_logger - INFO - DataInputter initialized.
+2023-03-13 16:40:41,471 - custom_logger - INFO - DataInputter initialized.
+2023-03-13 16:40:41,471 - custom_logger - INFO - DataInputter initialized.
+2023-03-13 16:40:41,471 - custom_logger - INFO - DataInputter initialized.
+2023-03-13 16:40:41,471 - custom_logger - INFO - DataInputter initialized.
+2023-03-13 16:40:41,471 - custom_logger - INFO - DataInputter initialized.
+2023-03-13 16:40:41,471 - custom_logger - INFO - DataInputter initialized.
+2023-03-13 16:40:45,895 - custom_logger - INFO - DataInputter initialized.
+2023-03-13 16:40:45,895 - custom_logger - INFO - DataInputter initialized.
+2023-03-13 16:40:45,895 - custom_logger - INFO - DataInputter initialized.
+2023-03-13 16:40:45,895 - custom_logger - INFO - DataInputter initialized.
+2023-03-13 16:40:45,895 - custom_logger - INFO - DataInputter initialized.
+2023-03-13 16:40:45,895 - custom_logger - INFO - DataInputter initialized.
+2023-03-13 16:40:45,895 - custom_logger - INFO - DataInputter initialized.
+2023-03-13 16:40:45,895 - custom_logger - INFO - DataInputter initialized.
+2023-03-13 16:40:45,895 - custom_logger - INFO - DataInputter initialized.
+2023-03-13 16:40:45,895 - custom_logger - INFO - DataInputter initialized.
+2023-03-13 16:40:45,895 - custom_logger - INFO - DataInputter initialized.
+2023-03-13 16:40:45,895 - custom_logger - INFO - DataInputter initialized.
+2023-03-13 16:40:45,895 - custom_logger - INFO - DataInputter initialized.
+2023-03-13 16:40:45,895 - custom_logger - INFO - DataInputter initialized.
+2023-03-13 16:40:45,895 - custom_logger - INFO - DataInputter initialized.
+2023-03-13 16:40:45,895 - custom_logger - INFO - DataInputter initialized.
+2023-03-13 16:53:03,542 - custom_logger - INFO - Data loaded.
+2023-03-13 16:53:03,543 - custom_logger - INFO - My Data Initialized and loaded
+2023-03-13 16:53:05,027 - custom_logger - INFO - Your selected dataframe has 5 columns.
+There are 1 columns that have missing values.
+2023-03-13 16:53:07,550 - custom_logger - INFO - Data loaded.
+2023-03-13 16:53:07,550 - custom_logger - INFO - Data loaded.
+2023-03-13 16:53:07,557 - custom_logger - INFO - My Data Initialized and loaded
+2023-03-13 16:53:07,557 - custom_logger - INFO - My Data Initialized and loaded
+2023-03-13 16:53:07,559 - custom_logger - INFO - DataInputter initialized.
+2023-03-13 16:53:07,559 - custom_logger - INFO - DataInputter initialized.
+2023-03-13 16:53:07,559 - custom_logger - INFO - DataInputter initialized.
+2023-03-13 16:53:08,471 - custom_logger - INFO - Your selected dataframe has 122 columns.
+There are 67 columns that have missing values.
+2023-03-13 16:53:08,471 - custom_logger - INFO - Your selected dataframe has 122 columns.
+There are 67 columns that have missing values.
+2023-03-13 16:53:08,471 - custom_logger - INFO - Your selected dataframe has 122 columns.
+There are 67 columns that have missing values.
+2023-03-13 16:53:09,895 - custom_logger - INFO - Data loaded.
+2023-03-13 16:53:09,895 - custom_logger - INFO - Data loaded.
+2023-03-13 16:53:09,895 - custom_logger - INFO - Data loaded.
+2023-03-13 16:53:09,895 - custom_logger - INFO - Data loaded.
+2023-03-13 16:53:09,897 - custom_logger - INFO - My Data Initialized and loaded
+2023-03-13 16:53:09,897 - custom_logger - INFO - My Data Initialized and loaded
+2023-03-13 16:53:09,897 - custom_logger - INFO - My Data Initialized and loaded
+2023-03-13 16:53:09,897 - custom_logger - INFO - My Data Initialized and loaded
+2023-03-13 16:53:09,899 - custom_logger - INFO - DataInputter initialized.
+2023-03-13 16:53:09,899 - custom_logger - INFO - DataInputter initialized.
+2023-03-13 16:53:09,899 - custom_logger - INFO - DataInputter initialized.
+2023-03-13 16:53:09,899 - custom_logger - INFO - DataInputter initialized.
+2023-03-13 16:53:09,899 - custom_logger - INFO - DataInputter initialized.
+2023-03-13 16:53:10,364 - custom_logger - INFO - Your selected dataframe has 121 columns.
+There are 64 columns that have missing values.
+2023-03-13 16:53:10,364 - custom_logger - INFO - Your selected dataframe has 121 columns.
+There are 64 columns that have missing values.
+2023-03-13 16:53:10,364 - custom_logger - INFO - Your selected dataframe has 121 columns.
+There are 64 columns that have missing values.
+2023-03-13 16:53:10,364 - custom_logger - INFO - Your selected dataframe has 121 columns.
+There are 64 columns that have missing values.
+2023-03-13 16:53:10,364 - custom_logger - INFO - Your selected dataframe has 121 columns.
+There are 64 columns that have missing values.
+2023-03-13 16:53:13,811 - custom_logger - INFO - DataInputter initialized.
+2023-03-13 16:53:13,811 - custom_logger - INFO - DataInputter initialized.
+2023-03-13 16:53:13,811 - custom_logger - INFO - DataInputter initialized.
+2023-03-13 16:53:13,811 - custom_logger - INFO - DataInputter initialized.
+2023-03-13 16:53:13,811 - custom_logger - INFO - DataInputter initialized.
+2023-03-13 16:53:13,811 - custom_logger - INFO - DataInputter initialized.
+2023-03-13 16:53:13,811 - custom_logger - INFO - DataInputter initialized.
+2023-03-13 16:53:15,457 - custom_logger - INFO - DataInputter initialized.
+2023-03-13 16:53:15,457 - custom_logger - INFO - DataInputter initialized.
+2023-03-13 16:53:15,457 - custom_logger - INFO - DataInputter initialized.
+2023-03-13 16:53:15,457 - custom_logger - INFO - DataInputter initialized.
+2023-03-13 16:53:15,457 - custom_logger - INFO - DataInputter initialized.
+2023-03-13 16:53:15,457 - custom_logger - INFO - DataInputter initialized.
+2023-03-13 16:53:15,457 - custom_logger - INFO - DataInputter initialized.
+2023-03-13 16:53:15,457 - custom_logger - INFO - DataInputter initialized.
+2023-03-13 16:53:15,457 - custom_logger - INFO - DataInputter initialized.
+2023-03-13 16:53:21,426 - custom_logger - INFO - DataInputter initialized.
+2023-03-13 16:53:21,426 - custom_logger - INFO - DataInputter initialized.
+2023-03-13 16:53:21,426 - custom_logger - INFO - DataInputter initialized.
+2023-03-13 16:53:21,426 - custom_logger - INFO - DataInputter initialized.
+2023-03-13 16:53:21,426 - custom_logger - INFO - DataInputter initialized.
+2023-03-13 16:53:21,426 - custom_logger - INFO - DataInputter initialized.
+2023-03-13 16:53:21,426 - custom_logger - INFO - DataInputter initialized.
+2023-03-13 16:53:21,426 - custom_logger - INFO - DataInputter initialized.
+2023-03-13 16:53:21,426 - custom_logger - INFO - DataInputter initialized.
+2023-03-13 16:53:21,426 - custom_logger - INFO - DataInputter initialized.
+2023-03-13 16:53:21,426 - custom_logger - INFO - DataInputter initialized.
+2023-03-13 16:53:34,052 - custom_logger - INFO - DataInputter initialized.
+2023-03-13 16:53:34,052 - custom_logger - INFO - DataInputter initialized.
+2023-03-13 16:53:34,052 - custom_logger - INFO - DataInputter initialized.
+2023-03-13 16:53:34,052 - custom_logger - INFO - DataInputter initialized.
+2023-03-13 16:53:34,052 - custom_logger - INFO - DataInputter initialized.
+2023-03-13 16:53:34,052 - custom_logger - INFO - DataInputter initialized.
+2023-03-13 16:53:34,052 - custom_logger - INFO - DataInputter initialized.
+2023-03-13 16:53:34,052 - custom_logger - INFO - DataInputter initialized.
+2023-03-13 16:53:34,052 - custom_logger - INFO - DataInputter initialized.
+2023-03-13 16:53:34,052 - custom_logger - INFO - DataInputter initialized.
+2023-03-13 16:53:34,052 - custom_logger - INFO - DataInputter initialized.
+2023-03-13 16:53:34,052 - custom_logger - INFO - DataInputter initialized.
+2023-03-13 16:53:34,052 - custom_logger - INFO - DataInputter initialized.
+2023-03-13 16:53:34,052 - custom_logger - INFO - DataInputter initialized.
+2023-03-13 16:53:39,193 - custom_logger - INFO - DataInputter initialized.
+2023-03-13 16:53:39,193 - custom_logger - INFO - DataInputter initialized.
+2023-03-13 16:53:39,193 - custom_logger - INFO - DataInputter initialized.
+2023-03-13 16:53:39,193 - custom_logger - INFO - DataInputter initialized.
+2023-03-13 16:53:39,193 - custom_logger - INFO - DataInputter initialized.
+2023-03-13 16:53:39,193 - custom_logger - INFO - DataInputter initialized.
+2023-03-13 16:53:39,193 - custom_logger - INFO - DataInputter initialized.
+2023-03-13 16:53:39,193 - custom_logger - INFO - DataInputter initialized.
+2023-03-13 16:53:39,193 - custom_logger - INFO - DataInputter initialized.
+2023-03-13 16:53:39,193 - custom_logger - INFO - DataInputter initialized.
+2023-03-13 16:53:39,193 - custom_logger - INFO - DataInputter initialized.
+2023-03-13 16:53:39,193 - custom_logger - INFO - DataInputter initialized.
+2023-03-13 16:53:39,193 - custom_logger - INFO - DataInputter initialized.
+2023-03-13 16:53:39,193 - custom_logger - INFO - DataInputter initialized.
+2023-03-13 16:53:39,193 - custom_logger - INFO - DataInputter initialized.
+2023-03-13 16:53:39,193 - custom_logger - INFO - DataInputter initialized.

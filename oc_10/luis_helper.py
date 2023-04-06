@@ -91,6 +91,7 @@ class LUISHelper:
         print(f"Custom entity {entity_name} added with ID {entity_id} to app {self.app_id}")
         return entity_id
 
+    '''
     def add_entity_feature(self, entity_id, feature_model_name: str):
         # Add entity feature
         #entity_id = self.client.model.get_entity_id(self.app_id, self.app_version, entity_name)
@@ -103,11 +104,13 @@ class LUISHelper:
             },
         )
         print(f"{feature_model_name} feature created with ID {feature_id} in entity id {entity_id}")
+    '''
+    
     
     def add_entities_and_features(self):
         for entity in entities:
             entity_id = self.add_custom_entity(entity)
-            self.add_entity_feature(entity_id, entities_map[entity])
+            #self.add_entity_feature(entity_id, entities_map[entity])
         
     def add_intent(self, intent_name: str):
         intent_id = self.client.model.add_intent(self.app_id, self.app_version, name=intent_name)
